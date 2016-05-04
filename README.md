@@ -1,8 +1,8 @@
 # mdpreview
-Preview and Convert Markdown to HTML
+ Markdown Preview and Convert to HTML with Electron.
 
 ## 概要
-Electronで作成したMarkdownプレビューアプリです。いったんHTMLファイルを書き出してから読み込んで表示するというのが特徴です。
+Electronで作成したMarkdownプレビューアプリです。grunt-markdownで行っていたHTML変換タスクの代替として作成しているので、いったんHTMLファイルを書き出してから読み込んで表示するという特徴を持ちます。
 
 その際に`_template.html`というHTMLのテンプレートファイルを読み込む仕様なので、
 テンプレートファイルにCSSの読み込みを書いておけば、任意のCSSを読み込んでプレビュー表示することができます。
