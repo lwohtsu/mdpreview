@@ -26,7 +26,7 @@ app.on('window-all-closed', function() {
 // 起動時にウィンドウを開く
 app.on('ready', function() {
   Menu.setApplicationMenu(menu);
-  
+
   // ブラウザ(Chromium)の起動, 初期画面のロード
   mainWindow = new BrowserWindow({width: 800, height: 600});
   mainWindow.loadURL('file://' + __dirname + '/index.html');
@@ -50,22 +50,22 @@ var template = [
   {
     label: 'MDPreview',
     submenu: [
-      {label: 'Quit', accelerator: 'Command+Q', click: function () {app.quit();}}
+      {label: 'Quit', accelerator: 'CmdOrCtrl+Q', click: function () {app.quit();}}
     ]
   }, {
     label: 'File',
     submenu: [
-      {label: 'Open', accelerator: 'Command+O', click: function() {
+      {label: 'Open', accelerator: 'CmdOrCtrl+O', click: function() {
         // 「ファイルを開く」ダイアログの呼び出し
         require('dialog').showOpenDialog(
           {
-            properties: ['openFile'], 
+            properties: ['openFile'],
             filters:[{name: 'Markdown', extensions: ['md']}]
-          }, 
+          },
           //ファイルを開く処理
           function (filenames){
             if(filenames && filenames[0]){
-              mainWindow.loadURL('file://' + __dirname + '/index.html?openfile=' + encodeURIComponent(filenames[0]));              
+              mainWindow.loadURL('file://' + __dirname + '/index.html?openfile=' + encodeURIComponent(filenames[0]));
             }
         });
       }}
@@ -73,8 +73,8 @@ var template = [
   }, {
     label: 'View',
     submenu: [
-      { label: 'Reload', accelerator: 'Command+R', click: function() { mainWindow.webContents.reloadIgnoringCache(); } },
-      { label: 'Toggle DevTools', accelerator: 'Alt+Command+I', click: function() { mainWindow.toggleDevTools(); } }
+      { label: 'Reload', accelerator: 'CmdOrCtrl+R', click: function() { mainWindow.webContents.reloadIgnoringCache(); } },
+      { label: 'Toggle DevTools', accelerator: 'Alt+CmdOrCtrl+I', click: function() { mainWindow.toggleDevTools(); } }
     ]
   }
 ];
