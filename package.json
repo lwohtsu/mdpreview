@@ -1,0 +1,20 @@
+{
+  "name": "mdpreview",
+  "version": "1.0.0",
+  "description": "Convert from Markdown to HTML with CSS",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "lwohts <ohtsu-y1@libroworks.co.jp>",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "chokidar": "^1.4.3",
+    "glob": "^7.0.3",
+    "grunt-markdown": "^0.7.0",
+    "highlight.js": "^9.3.0",
+    "lodash": "^4.11.2",
+    "marked": "^0.3.5"
+  }
+}

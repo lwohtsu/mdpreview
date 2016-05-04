@@ -1,0 +1,23 @@
+{
+  "name": "mdpreview",
+  "description": "Markdown to HTML with CSS",
+  "main": "main.js",
+  "authors": [
+    "lwohts <ohtsu-y1@libroworks.co.jp>"
+  ],
+  "license": "GPL-3.0",
+  "homepage": "http://www.libroworks.co.jp",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-bootstrap": "angular-ui-bootstrap-bower#^1.3.2",
+    "bootstrap": "^3.3.6"
+  }
+}
