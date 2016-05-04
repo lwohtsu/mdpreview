@@ -9,6 +9,10 @@
   "keywords": [],
   "author": "lwohts <ohtsu-y1@libroworks.co.jp>",
   "license": "GPL-3.0",
+  "repository" :{
+    "type" : "git",
+    "url" : "https://github.com/lwohtsu/mdpreview.git"
+  },
   "dependencies": {
     "chokidar": "^1.4.3",
     "glob": "^7.0.3",
