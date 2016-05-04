@@ -8,3 +8,6 @@ Electronで作成したMarkdownプレビューアプリです。grunt-markdown�
 テンプレートファイルにCSSの読み込みを書いておけば、任意のCSSを読み込んでプレビュー表示することができます。
 
 最終的にはVivliostyleを利用した書籍形式でのプレビューへの対応と、InDesign向けのXMLファイル書き出しをサポートする予定です。
+
+
+![screenshot](readme/mdpreview1.jpg)
