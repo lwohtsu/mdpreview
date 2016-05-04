@@ -22,8 +22,6 @@ if(openfile){
     // iframeに読み込む
     var iframe =  document.getElementById('html-preview');
     iframe.src = 'file://' + htmlfilepath;
-    // document.getElementById('html-preview').contentDocument
-        // .location.replace('file://' + htmlfilepath);
 
     // iframeの高さを目一杯にしたい
     // TODO: 本当はタブ幅の分ちゃんと削りたいけどよくわからないので-100px固定
@@ -32,7 +30,7 @@ if(openfile){
     
     // 監視の準備
     watcher = chokidar.watch(openfile);
-    // Markdownファイルが苦心されたらHTMLを作り直してリロードする
+    // Markdownファイルが更新されたらHTMLを作り直してリロードする
     watcher.on('change', function(path){
         console.log('change: ' + path);
         fileUtil.convertMarkdown(openfile);
