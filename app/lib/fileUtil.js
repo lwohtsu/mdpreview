@@ -52,15 +52,17 @@ var fileUtil = {
     //markedのオプション設定
     marked.setOptions({
       renderer: new marked.Renderer(),
-      gfm: true,
-      tables: true,
-      breaks: false,
+      gfm: true,        //GitHub Flavored Markdown
+      tables: true,     //表組み対応
+      breaks: false,    //GFMページブレーク対応
       pedantic: false,
-      sanitize: true,
+      sanitize: false,  //HTMLタグのエスケープ（svgなどを通したいので無効に）
       smartLists: true,
       smartypants: false,
+      // コードハイライト用の関数を当てる
       highlight: function(code, lang){
         var out = code;
+        // ```言語名 での指定があればそれを使う
         try {
           out = hljs.highlight(lang, code).value;
         } catch (e){
