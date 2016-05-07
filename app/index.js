@@ -40,6 +40,8 @@ if(openfile){
         fileUtil.convertMarkdown(openfile);
         document.getElementById('html-preview').contentDocument
             .location.reload(true);
+        document.getElementById('source-html').innerHTML = 
+            '<code class="xml hljs">' + fileUtil.getAsHTML(htmlfilepath)  + '</code>';
     });
 }
 
@@ -95,7 +97,7 @@ ngModule.directive('htmlView', function () {
     return function ($scope, $elem, $attrs) {
         $scope.$watch($attrs.htmlView, function(source) {
             //マークダウンテキストをpreで囲んで表示 
-            $elem.html('<pre class="source-html"><code class="xml hljs"></code></pre>')
+            $elem.html('<pre id="source-html"><code class="xml hljs"></code></pre>')
                 .find("code").html(source);
         });
     };
