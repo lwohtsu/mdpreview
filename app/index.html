@@ -6,6 +6,7 @@
 <!--<link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">-->
 <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tomorrow-night-blue.css">
 </head>
 <body ng-controller="MainController as main">
 
@@ -21,14 +22,15 @@
         <uib-tab index="0" heading="HTMLPreview">
             <iframe id="html-preview" class="row-html" src=""></iframe>
         </uib-tab>
-        <!--Markdownのプレビュー-->
-        <uib-tab index="1" heading="HTML">
-            <div ng-if="main.openfile">
-                <div md-preview="main.fileText"></div>
-            </div>
-        </uib-tab>
+        <!--置換リスト-->
         <uib-tab index="2" heading="PostReplaceList">
             置換リスト
+        </uib-tab>
+        <!--Markdownのプレビュー-->
+        <uib-tab index="1" heading="HTML">
+            <div ng-if="main.htmlfilepath">
+                <div html-view="main.fileHTML"></div>
+            </div>
         </uib-tab>
         <!--Vivliostyleを使ったプレビュー-->
         <uib-tab index="3" heading="LinkToVivliostyle">

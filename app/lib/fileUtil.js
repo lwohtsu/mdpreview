@@ -30,7 +30,21 @@ var fileUtil = {
   },
 
   getAsText: function (filename) {
-    return fs.readFileSync(filename, 'utf-8');
+    try{
+        return fs.readFileSync(filename, 'utf-8');  
+    } catch(e){
+        require('dialog').showErrorBox('Error', filename + ' not found.');
+        return filename + 'not found.'; 
+    }
+  },
+  
+  getAsHTML: function(filename){
+    try{
+        return hljs.highlight('html', fs.readFileSync(filename, 'utf-8')).value;  
+    } catch(e){
+        require('dialog').showErrorBox('Error', filename + ' not found.');
+        return filename + 'not found.'; 
+    }    
   },
   
   convertMarkdown: function(openfile) {

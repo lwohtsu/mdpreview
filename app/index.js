@@ -9,6 +9,7 @@ var fileUtil = remote.require('./lib/fileUtil');
 // URLからクエリテキストのopenfileを取得
 var matched = location.search.match(/openfile=([^&]*)/);
 var openfile = matched && decodeURIComponent(matched[1]);
+var htmlfilepath = '';
 // ファイル監視
 var chokidar = require('chokidar');
 var watcher = null;
@@ -19,7 +20,7 @@ var ipc = require('electron').ipcRenderer;
 // 作業フォルダ取得
 if(openfile){
     // markdownからhtmlファイルを作成
-    var htmlfilepath = fileUtil.convertMarkdown(openfile);
+    htmlfilepath = fileUtil.convertMarkdown(openfile);
     // console.log('file://' + htmlfilepath);   
     
     // iframeに読み込む
@@ -83,14 +84,19 @@ ngModule.controller('MainController', function($scope){
     if(main.openfile){
         main.fileText = fileUtil.getAsText(main.openfile);
     }
+    main.htmlfilepath = htmlfilepath;
+    if(main.htmlfilepath){
+        main.fileHTML = fileUtil.getAsHTML(htmlfilepath);        
+    }
 });
 
 // <div md-preview="main.fileText"></div>と書くとそこに表示されるらしい
-ngModule.directive('mdPreview', function () {
+ngModule.directive('htmlView', function () {
     return function ($scope, $elem, $attrs) {
-        $scope.$watch($attrs.mdPreview, function(source) {
+        $scope.$watch($attrs.htmlView, function(source) {
             //マークダウンテキストをpreで囲んで表示 
-            $elem.html('<pre class="source-md"></pre>').find("pre").text(source);
+            $elem.html('<pre class="source-html"><code class="xml hljs"></code></pre>')
+                .find("code").html(source);
         });
     };
 });
