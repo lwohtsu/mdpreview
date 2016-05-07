@@ -74,7 +74,9 @@ var template = [
     label: 'View',
     submenu: [
       { label: 'Reload', accelerator: 'CmdOrCtrl+R', click: function() { mainWindow.webContents.reloadIgnoringCache(); } },
-      { label: 'Toggle DevTools', accelerator: 'Alt+CmdOrCtrl+I', click: function() { mainWindow.toggleDevTools(); } }
+      { label: 'Toggle DevTools', accelerator: 'Alt+CmdOrCtrl+I', click: function() { mainWindow.toggleDevTools(); } },
+      { label: 'Zoom In', accelerator: 'CmdOrCtrl+Plus', click: function(){ mainWindow.webContents.send('main-process-message', 'Zoom In');}},
+      { label: 'Zoom Out', accelerator: 'CmdOrCtrl+-', click: function(){ mainWindow.webContents.send('main-process-message', 'Zoom Out');}}
     ]
   }
 ];

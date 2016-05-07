@@ -9,7 +9,7 @@
 </head>
 <body ng-controller="MainController as main">
 
-<div ng-if="!main.fileText">
+<div ng-if="!main.openfile">
     <h1>MarkdownをOpenしてください</h1>
 </div>
 
@@ -22,8 +22,8 @@
             <iframe id="html-preview" class="row-html" src=""></iframe>
         </uib-tab>
         <!--Markdownのプレビュー-->
-        <uib-tab index="1" heading="Markdown">
-            <div ng-if="main.fileText">
+        <uib-tab index="1" heading="HTML">
+            <div ng-if="main.openfile">
                 <div md-preview="main.fileText"></div>
             </div>
         </uib-tab>

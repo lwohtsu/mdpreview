@@ -13,6 +13,9 @@ var openfile = matched && decodeURIComponent(matched[1]);
 var chokidar = require('chokidar');
 var watcher = null;
 
+// プロセス間通信
+var ipc = require('electron').ipcRenderer;
+
 // 作業フォルダ取得
 if(openfile){
     // markdownからhtmlファイルを作成
@@ -32,7 +35,7 @@ if(openfile){
     watcher = chokidar.watch(openfile);
     // Markdownファイルが更新されたらHTMLを作り直してリロードする
     watcher.on('change', function(path){
-        console.log('change: ' + path);
+        // console.log('change: ' + path);
         fileUtil.convertMarkdown(openfile);
         document.getElementById('html-preview').contentDocument
             .location.reload(true);
@@ -47,6 +50,27 @@ window.onresize = function(){
     iframe.style.height = (dh - 80) + 'px';    
 }
 
+// 非同期でメインプロセスからのメッセージを受信する
+var g_zoomrate = 1.0;
+ipc.on('main-process-message', function(event, arg) {
+    console.log(arg);
+    if(arg == 'Zoom In'){
+        //HTMLプレビューの拡大
+        var iframe = document.getElementById('html-preview');
+        g_zoomrate += 0.25;
+        if(g_zoomrate > 6.0) g_zoomrate = 6.0;
+        iframe.style.transformOrigin = '0 0';
+        iframe.style.transform = 'scale('+ g_zoomrate + ')';        
+    } else if(arg == 'Zoom Out'){
+        //HTMLプレビューの縮小
+        var iframe = document.getElementById('html-preview');
+        g_zoomrate -= 0.25;
+        if(g_zoomrate < 1.0) g_zoomrate = 1.0;
+        iframe.style.transformOrigin = '0 0';
+        iframe.style.transform = 'scale('+ g_zoomrate + ')';        
+    }
+
+});
 
 // angularの使用準備
 var ngModule = angular.module('mdpreview', ['ui.bootstrap']);
