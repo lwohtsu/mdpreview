@@ -24,7 +24,9 @@
         </uib-tab>
         <!--置換リスト-->
         <uib-tab index="2" heading="PostReplaceList">
-            置換リスト
+            <div ng-if="main.htmlfilepath">
+                <div replist-view="main.replacelist"></div>
+            </div>
         </uib-tab>
         <!--Markdownのプレビュー-->
         <uib-tab index="1" heading="HTML">

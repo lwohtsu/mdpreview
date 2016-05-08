@@ -85,6 +85,7 @@ ngModule.controller('MainController', function($scope){
     // ファイルを取得
     if(main.openfile){
         main.fileText = fileUtil.getAsText(main.openfile);
+        main.replacelist = fileUtil.getAsReplaceList(main.openfile);
     }
     main.htmlfilepath = htmlfilepath;
     if(main.htmlfilepath){
@@ -103,3 +104,13 @@ ngModule.directive('htmlView', function () {
     };
 });
 
+// <div replist-view="main.replacelist"></div>と書くとそこに表示されるらしい
+ngModule.directive('replistView', function () {
+    return function ($scope, $elem, $attrs) {
+        $scope.$watch($attrs.replistView, function(source) {
+            //マークダウンテキストをpreで囲んで表示 
+            $elem.html('<pre id="replist-html"><code class="javascript hljs"></code></pre>')
+                .find("code").html(source);
+        });
+    };
+});

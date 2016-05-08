@@ -29,6 +29,7 @@ var fileUtil = {
     });
   },
 
+  //指定したファイルをプレーンテキストとして返す
   getAsText: function (filename) {
     try{
         return fs.readFileSync(filename, 'utf-8');  
@@ -38,6 +39,7 @@ var fileUtil = {
     }
   },
   
+  // 指定したファイルをコードハイライトしたHTMLとして返す
   getAsHTML: function(filename){
     try{
         return hljs.highlight('html', fs.readFileSync(filename, 'utf-8')).value;  
@@ -47,19 +49,31 @@ var fileUtil = {
     }    
   },
   
+  // 指定したファイルをJSONファイルとして返す（ない場合は空白）
+  getAsReplaceList:function (openfile) {
+    var l = openfile.lastIndexOf(path.sep);
+    var workfolder = openfile.substring(0, l);    
+    try{
+      var replist = fs.readFileSync( 
+        path.join(workfolder, '_postReplaceList.json'), 'utf-8');      
+      return hljs.highlight('javascript', replist).value;
+    } catch(e){
+      return '';
+    }
+  },
+  
   convertMarkdown: function(openfile) {
     var l = openfile.lastIndexOf(path.sep);
     var workfolder = openfile.substring(0, l);    
-    // var templatepath = workfolder + path.sep + '_template.html';
     
     //書き出しファイル名
-    var htmlfile = openfile.replace('.md', '.html');
+    var htmlfilepath = openfile.replace('.md', '.html');
     //テンプレートの読み込み
     try{
       var template = fs.readFileSync(
         path.join(workfolder, '_template.html'), 'utf-8');
     } catch (err){
-      require('dialog').showErrorBox('Error', '_template.html not found.');
+      require('dialog').showErrorBox('File Open Error', err.message);
       return '_template.html not found.'; 
     }
   
@@ -90,24 +104,37 @@ var fileUtil = {
     try{
       var src = fs.readFileSync(openfile, 'utf-8');
     } catch (err){
-      require('dialog').showErrorBox('Error', 'cannot open file.');
+      require('dialog').showErrorBox('File Open Error', err.message);
       return 'cannot open file.';       
     }
     var html = marked(src);
     
     // 強引な後処理 閉じpreの後に改行（入れないとXML変換時にトラブルと思う）
-    var html = html.replace(/<\/pre>/g, '</pre>\n');
+    html = html.replace(/<\/pre>/g, '</pre>\n');
 
-    // lodashを使ってテンプレートにはめ込む
+    // _postReplaceList.jsonがあれば後置換を実行
+    try{
+      var replisttext = fs.readFileSync( 
+        path.join(workfolder, '_postReplaceList.json'), 'utf-8');      
+      var replist = JSON.parse(replisttext);
+      for(var i=0; i<replist.length; i++){
+        html = html.replace(new RegExp(replist[i].f, 'g'), replist[i].r);
+      }
+    } catch(err){
+      require('dialog').showErrorBox('RepList Open Error', err.message);
+      console.log('no replist');
+    }
+
+    // lodashを使ってテンプレートにはめ込んで書き出す
     var compiled = _.template(template);
     try {
-      fs.writeFileSync(htmlfile, compiled({content: html}));    
+      fs.writeFileSync(htmlfilepath, compiled({content: html}));    
     } catch (err){
-      require('dialog').showErrorBox('Error', 'cannot write file.');
+      require('dialog').showErrorBox('File Write Error', err.message);
       return 'cannot write file.';       
     }
-    
-    return htmlfile;
+
+    return htmlfilepath;
   }
 };
 
