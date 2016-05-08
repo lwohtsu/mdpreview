@@ -1,5 +1,6 @@
 bower_components
 node_modules
 mdpreview-win32-x64
+mdpreview-win32-ia32
 mdpreview-darwin-x64
 test\viewer
