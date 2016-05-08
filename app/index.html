@@ -15,7 +15,7 @@
 </div>
 
 <div ng-if="main.openfile">
-    <div>{{main.openfile}}</div>
+    <!--<div>{{main.openfile}}</div>-->
     <!--タブ-->
     <uib-tabset active="active">
         <!--生のHTMLプレビュー-->
@@ -23,34 +23,20 @@
             <iframe id="html-preview" class="row-html" src=""></iframe>
         </uib-tab>
         <!--置換リスト-->
-        <uib-tab index="2" heading="PostReplaceList">
+        <uib-tab index="1" heading="PostReplaceList">
             <div ng-if="main.htmlfilepath">
                 <div replist-view="main.replacelist"></div>
             </div>
         </uib-tab>
         <!--Markdownのプレビュー-->
-        <uib-tab index="1" heading="HTML">
+        <uib-tab index="2" heading="HTML">
             <div ng-if="main.htmlfilepath">
                 <div html-view="main.fileHTML"></div>
             </div>
         </uib-tab>
         <!--Vivliostyleを使ったプレビュー-->
-        <uib-tab index="3" heading="LinkToVivliostyle">
-            <div class="guide">
-                <h2>以下は現在実装中です。</h2>
-                <h2>Vivliostyleプレビューガイド</h2>
-                <p>Vivliostyleを使って書籍形式のプレビューする方法を説明します。</p>
-                <h3>1. Viewerの準備</h3>
-                <p>以下からVivliostyle.jsをdownloadし、解凍したファイル内のViewerフォルダをMarkdownファイルと同じフォルダ内に置きます。</p>
-                <p><a href="http://vivliostyle.com/ja/products/#secProducts-download" target="_blank">
-                    http://vivliostyle.com/ja/products/#secProducts-download
-                    </a>
-                </p>
-                <h3>2. Webサーバの起動</h3>
-                <p> [book]->[start web server] を選択してWeb Serverを起動します。</p>
-                <h3>3. ファイルを開く</h3>
-                <p> 以下のlinkをclickするとファイルが開かれます。</p>
-            </div>
+        <uib-tab index="3" heading="VivliostylePreview">
+            <iframe id="vs-preview" class="vs-html" src=""></iframe>
         </uib-tab>
     </uib-tabset>
 </div>

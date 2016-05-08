@@ -11,7 +11,7 @@ var Shell = require('electron').shell;
 
 require('crash-reporter').start({
   productName: 'mdpreview',
-  companyName: 'Libroworks',
+  companyName: 'LibroWorks',
   submitURL: 'htp://www.libroworks.co.jp',
   autoSubmit: false
 });
@@ -76,7 +76,8 @@ var template = [
       { label: 'Reload', accelerator: 'CmdOrCtrl+R', click: function() { mainWindow.webContents.reloadIgnoringCache(); } },
       { label: 'Toggle DevTools', accelerator: 'Alt+CmdOrCtrl+I', click: function() { mainWindow.toggleDevTools(); } },
       { label: 'Zoom In', accelerator: 'CmdOrCtrl+Plus', click: function(){ mainWindow.webContents.send('main-process-message', 'Zoom In');}},
-      { label: 'Zoom Out', accelerator: 'CmdOrCtrl+-', click: function(){ mainWindow.webContents.send('main-process-message', 'Zoom Out');}}
+      { label: 'Zoom Out', accelerator: 'CmdOrCtrl+-', click: function(){ mainWindow.webContents.send('main-process-message', 'Zoom Out');}},
+      { label: 'VSPreview Reload', accelerator: 'CmdOrCtrl+Shift+R', click: function(){ mainWindow.webContents.send('main-process-message', 'VSPreview Reload');}}
     ]
   }
 ];

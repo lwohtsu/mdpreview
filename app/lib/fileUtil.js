@@ -74,7 +74,7 @@ var fileUtil = {
         path.join(workfolder, '_template.html'), 'utf-8');
     } catch (err){
       require('dialog').showErrorBox('File Open Error', err.message);
-      return '_template.html not found.'; 
+      throw new Error('_template.html not found.');
     }
   
     //markedのオプション設定
@@ -105,7 +105,7 @@ var fileUtil = {
       var src = fs.readFileSync(openfile, 'utf-8');
     } catch (err){
       require('dialog').showErrorBox('File Open Error', err.message);
-      return 'cannot open file.';       
+      throw new Error('cannot open file.');
     }
     var html = marked(src);
     
@@ -131,7 +131,7 @@ var fileUtil = {
       fs.writeFileSync(htmlfilepath, compiled({content: html}));    
     } catch (err){
       require('dialog').showErrorBox('File Write Error', err.message);
-      return 'cannot write file.';       
+      throw new Error('cannot write file.');
     }
 
     return htmlfilepath;
