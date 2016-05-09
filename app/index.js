@@ -78,8 +78,9 @@ window.onresize = function(){
     // TODO: 本当はタブ幅の分ちゃんと削りたいけどよくわからないので-100px固定
     iframe.style.height = (dh - 80) + 'px';    
     var vsiframe =  document.getElementById('vs-preview');
-    vsiframe.style.height = (dh - 80) + 'px';    
-    vsiframe.contentDocument.location.reload(true);
+    vsiframe.style.height = (dh - 80) + 'px';   
+    // TODO: リサイズ時のリロードを止める　できれば警告を表示したい
+    // vsiframe.contentDocument.location.reload(true);
 }
 
 // 非同期でメインプロセスからのメッセージを受信する
