@@ -133,6 +133,13 @@ var fileUtil = {
       require('dialog').showErrorBox('File Write Error', err.message);
       throw new Error('cannot write file.');
     }
+    
+    // vspreviewが可能かチェックする
+    try{
+      fs.accessSync(path.join( path.join(workfolder, 'viewer'), 'vivliostyle-viewer.html'));
+    } catch(err){
+      require('dialog').showErrorBox('VivlioStyle not Found', err.message);      
+    }
 
     return htmlfilepath;
   }
