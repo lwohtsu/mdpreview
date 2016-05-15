@@ -245,3 +245,11 @@ ul, ol{
   color:#F00;
 }
 
+.blankline{
+  height: 5.5mm;
+  border: none;
+}
+.pagebreak{
+  page-break-after: always;
+  border:none;
+}
