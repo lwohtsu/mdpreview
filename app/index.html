@@ -38,9 +38,23 @@
         <uib-tab index="3" heading="VivliostylePreview">
             <iframe id="vs-preview" class="vs-html" src=""></iframe>
         </uib-tab>
+        <!--ツール-->
+        <uib-tab index="4" heading="Tools">
+            <div ng-if="main.htmlfilepath">
+                <h3>画像のSVG変換ツール</h3>
+                <p>このツールは元原稿のMarkdownファイルを書き換えます。
+                   不安な場合は元原稿のバックアップを取ってください。</p>
+                <dl>
+                    <dt>最大幅（mm）</dt>
+                    <dd><input id="maxwidth" type="number" value="120"></dd>
+                    <dt>倍率（scale=1.0）</dt>
+                    <dd><input id="scale" type="number" value="1.0"></dd>
+                </dl>
+                <button ng-click="main.svgConvert()">Convert</button>
+            </div>
+        </uib-tab>
     </uib-tabset>
 </div>
-
 
 
 <script src="bower_components/angular/angular.js"></script>

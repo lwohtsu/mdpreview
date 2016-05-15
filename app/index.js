@@ -111,7 +111,7 @@ ipc.on('main-process-message', function(event, arg) {
 // angularの使用準備
 var ngModule = angular.module('mdpreview', ['ui.bootstrap']);
 
-ngModule.controller('MainController', function($scope){
+ngModule.controller('MainController', function($scope, $uibModal, $log){
     var main = this;
     
     main.openfile = openfile; 
@@ -124,6 +124,14 @@ ngModule.controller('MainController', function($scope){
     if(main.htmlfilepath){
         main.fileHTML = fileUtil.getAsHTML(htmlfilepath);        
     }
+    
+    // SVG変換ツール
+    main.svgConvert = function(){
+        var maxwidth = document.getElementById('maxwidth').value;
+        var scale = document.getElementById('scale').value;
+        fileUtil.svgConvert(main.openfile, maxwidth, scale);
+    };
+
 });
 
 // <div md-preview="main.fileText"></div>と書くとそこに表示されるらしい
