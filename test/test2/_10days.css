@@ -169,6 +169,11 @@ ul, ol{
 .secheader h2{
   font-size: 32rem;
 }
+.secheader p{
+  margin-top: 3mm;
+  padding-top: 5mm;
+  border-top: dotted 0.15mm #888;
+}
 
 /*セクションヘッダー後のリード文*/
 .seclead p{
