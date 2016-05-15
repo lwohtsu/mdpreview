@@ -3,6 +3,7 @@
 var glob = require('glob');
 var path = require('path');
 var fs = require('fs');
+var dialog = require('dialog');
 // var grmarkdown = require('./markdown.js');
 var marked = require('marked');
 var hljs = require('highlight.js');
@@ -34,7 +35,7 @@ var fileUtil = {
     try{
         return fs.readFileSync(filename, 'utf-8');  
     } catch(e){
-        require('dialog').showErrorBox('Error', filename + ' not found.');
+        dialog.showErrorBox('Error', filename + ' not found.');
         return filename + 'not found.'; 
     }
   },
@@ -44,7 +45,7 @@ var fileUtil = {
     try{
         return hljs.highlight('html', fs.readFileSync(filename, 'utf-8')).value;  
     } catch(e){
-        require('dialog').showErrorBox('Error', filename + ' not found.');
+        dialog.showErrorBox('Error', filename + ' not found.');
         return filename + 'not found.'; 
     }    
   },
@@ -73,7 +74,7 @@ var fileUtil = {
       var template = fs.readFileSync(
         path.join(workfolder, '_template.html'), 'utf-8');
     } catch (err){
-      require('dialog').showErrorBox('File Open Error', err.message);
+      dialog.showErrorBox('File Open Error', err.message);
       throw new Error('_template.html not found.');
     }
   
@@ -104,7 +105,7 @@ var fileUtil = {
     try{
       var src = fs.readFileSync(openfile, 'utf-8');
     } catch (err){
-      require('dialog').showErrorBox('File Open Error', err.message);
+      dialog.showErrorBox('File Open Error', err.message);
       throw new Error('cannot open file.');
     }
     var html = marked(src);
@@ -121,7 +122,7 @@ var fileUtil = {
         html = html.replace(new RegExp(replist[i].f, 'g'), replist[i].r);
       }
     } catch(err){
-      require('dialog').showErrorBox('RepList Open Error', err.message);
+      dialog.showErrorBox('RepList Open Error', err.message);
       console.log('no replist');
     }
 
@@ -130,7 +131,7 @@ var fileUtil = {
     try {
       fs.writeFileSync(htmlfilepath, compiled({content: html}));    
     } catch (err){
-      require('dialog').showErrorBox('File Write Error', err.message);
+      dialog.showErrorBox('File Write Error', err.message);
       throw new Error('cannot write file.');
     }
     
@@ -138,11 +139,19 @@ var fileUtil = {
     try{
       fs.accessSync(path.join( path.join(workfolder, 'viewer'), 'vivliostyle-viewer.html'));
     } catch(err){
-      require('dialog').showErrorBox('VivlioStyle not Found', err.message);      
+      dialog.showErrorBox('VivlioStyle not Found', err.message);      
     }
 
     return htmlfilepath;
+  },
+
+  // 指定したMarkdownファイル内の画像指定を変換し、SVGにする
+  svgConvert: function(mdfile, maxwidth, scale){
+    console.log('svgConvert: ' + mdfile);
+    console.log('maxwidth: ' + maxwidth);
+    console.log('scale: ' + scale);
   }
+
 };
 
 module.exports = fileUtil;
