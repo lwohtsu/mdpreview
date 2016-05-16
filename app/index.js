@@ -129,7 +129,8 @@ ngModule.controller('MainController', function($scope, $uibModal, $log){
     main.svgConvert = function(){
         var maxwidth = document.getElementById('maxwidth').value;
         var scale = document.getElementById('scale').value;
-        fileUtil.svgConvert(main.openfile, maxwidth, scale);
+        var density = document.getElementById('density').value;
+        fileUtil.svgConvert(main.openfile, maxwidth, scale, density);
     };
 
 });

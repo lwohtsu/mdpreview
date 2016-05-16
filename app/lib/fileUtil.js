@@ -146,10 +146,11 @@ var fileUtil = {
   },
 
   // 指定したMarkdownファイル内の画像指定を変換し、SVGにする
-  svgConvert: function(mdfile, maxwidth, scale){
+  svgConvert: function(mdfile, maxwidth, scale, density){
     console.log('svgConvert: ' + mdfile);
     console.log('maxwidth: ' + maxwidth);
     console.log('scale: ' + scale);
+    console.log('density: ' + density);
   }
 
 };
