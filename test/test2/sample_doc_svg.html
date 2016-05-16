@@ -19,7 +19,9 @@
 <p>中級者向けのIT書でもっとも多いデザインは、「一段組みで文章の途中に図版やソースコードを挟みつつ、章末またはセクション末までリニアに続いていくタイプ」です。
 このタイプがより速く組めるようになれば、その分を校正期間に回してクォリティアップを図れるようになります。</p>
 <div class="figure">
-<img src="img/fig1.png" alt="">
+<svg width="106.804mm" height="67.169mm" viewBox="0 0 106.804 67.169">
+<image width="305.153" height="191.911" xlink:href="img/fig1.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">一段組みリニア型のイメージ</div>
 </div>
 <ul>
@@ -31,7 +33,9 @@
 <p>このタイプのデザイン指定は、たいていの場合、「各パーツのサイズ」と「パーツ間隔」の指定になりますが、それをそのままフォーマットにしてはいけません。</p>
 <p>そのまま各パーツがバラバラの状態で組んでしまうと、後でテキストの追加や削除が発生したときに、それ以降を手作業でずらすことになってしまいます。</p>
 <div class="figure">
-<img src="img/fig2.png" alt="">
+<svg width="106.804mm" height="67.169mm" viewBox="0 0 106.804 67.169">
+<image width="305.153" height="191.911" xlink:href="img/fig2.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">デザイン指定そのままのフォーマットでは修正が大変</div>
 </div>
 <p>では、組み直しが発生しない完璧な原稿をもらえばいい……というのは組む側の都合であって、作っているものが「解説書」である以上、デザインが複雑だから、DTPが大変だから、といった理由で内容に間違いがあっても直さないというのは本末転倒です。組みやすいフォーマットを作ることで、テキストや画像追加ぐらいなら楽勝！という状態に持って行きましょう。</p>
@@ -43,12 +47,16 @@
 <p>テキスト中に挿入したフレームを右クリックし、［アンカー付きオブジェクト］→［オプション］を選択すると［アンカー付きオブジェクトオプション］ダイアログボックスが表示されます。</p>
 <p>ここで［インラインまたは行の上］の［インライン］を選んだ状態がインラインオブジェクトです。</p>
 <div class="figure">
-<img src="img/s2-fig1.png" alt="">
+<svg width="53.093mm" height="60.625mm" viewBox="0 0 53.093 60.625">
+<image width="151.694" height="173.214" xlink:href="img/s2-fig1.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">［インライン］を選択した状態</div>
 </div>
 <p>結果を見るとわかるように、文字とまったく同じ扱いになり、オブジェクトのサイズに応じて周りの文字は追い出されます。ただし、回り込みの設定と違って、複数行のテキストがオブジェクトの横に回り込むことはありません。テキスト中の1文字を大きくした場合と同じ状態になります。</p>
 <div class="figure">
-<img src="img/s2-fig2.png" alt="">
+<svg width="86.554mm" height="110.137mm" viewBox="0 0 86.554 110.137">
+<image width="247.297" height="314.678" xlink:href="img/s2-fig2.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">［インライン］を選択した状態</div>
 </div>
 <p>なお、「行の上」という設定もありますが、使ったことがないので割愛します。</p>
@@ -56,12 +64,16 @@
 <h4 id="-">アンカー付きオブジェクト</h4>
 <p>［アンカー付きオブジェクトオプション］ダイアログボックスで［カスタム］を選んだ状態が、アンカー付きオブジェクトです。インラインよりも設定項目が増え、配置の自由度が上がっています。</p>
 <div class="figure">
-<img src="img/s2-fig3.png" alt="">
+<svg width="53.093mm" height="60.625mm" viewBox="0 0 53.093 60.625">
+<image width="151.694" height="173.214" xlink:href="img/s2-fig3.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">［カスタム］を選択した状態</div>
 </div>
 <p>結果を見ると、本文と図版にイカリのマークが付き、本文フレームの外に図版が飛び出しています（配置される場所はオプション設定によって変わります）。テキストには影響ありません。</p>
 <div class="figure">
-<img src="img/s2-fig4.png" alt="">
+<svg width="115.694mm" height="110.014mm" viewBox="0 0 115.694 110.014">
+<image width="330.553" height="314.325" xlink:href="img/s2-fig4.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">［カスタム］を選択した状態</div>
 </div>
 <p>2つの設定のうち、メインで使用するのはインラインのほうです。アンカー付きオブジェクトは細かい設定ができますが、その分コントロールが難しくなります。オブジェクトと本文が重ならないようにしたい場合は、回り込み設定を組み合わせなければいけません。また、ページをまたぐ位置に来たときにオブジェクトが見えなくなったり、うっかりアンカー文字を削除してオブジェクトを消してしまったりするトラブルも起きやすくなります。</p>
@@ -75,75 +87,103 @@
 <p>まず基本の文字スタイルについて説明します。ソースコードは原則等幅なので、フォントは、Courier New、Andale mono、Inconsolata、Source Code Proなどの等幅欧文フォントをベースにした合成フォントとなります。ただしそれで終わりではありません。これは最低限のことでしかなく、半角スペースで正確に文字揃えできるように、通常の和欧混淆文用とは設定を変えなければいけないのです。</p>
 <p>まず、合成フォントを作る時に和欧の横幅を変えると揃わなくなります。サイズを調整したい場合は、欧文を縦にちょっと引き延ばす程度がおすすめです。</p>
 <div class="figure">
-<img src="img/s4-fig1.png" alt="">
+<svg width="82.232mm" height="73.713mm" viewBox="0 0 82.232 73.713">
+<image width="234.95" height="210.608" xlink:href="img/s4-fig1.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">欧文を縦に110%引き延ばしてサイズを揃える</div>
 </div>
 <p>また、ソースコード用の文字組みアキ量設定を作成し、和欧文間をゼロ固定にします。</p>
 <div class="figure">
-<img src="img/s4-fig2.png" alt="">
+<svg width="95.691mm" height="69.762mm" viewBox="0 0 95.691 69.762">
+<image width="273.403" height="199.319" xlink:href="img/s4-fig2.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">和欧文間をゼロにする</div>
 </div>
 <p>その他に、段落スタイルで［欧文合字］をオフにし、カーニングや字送りなどの字間を変える設定は原則使わないようにします。折り返しが少ないほうがいいので、文字サイズは少し落としておくといいでしょう。</p>
 <div class="figure">
-<img src="img/s4-fig3.png" alt="">
+<svg width="83.961mm" height="67.539mm" viewBox="0 0 83.961 67.539">
+<image width="239.889" height="192.969" xlink:href="img/s4-fig3.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">［欧文合字］をオフにし、余計な字間調整はなるべくしない</div>
 </div>
 <p>折り返しが発生した場合に字間が広がらないように、行末揃えではなく左揃えを使用します。</p>
 <div class="figure">
-<img src="img/s4-fig4.png" alt="">
+<svg width="83.961mm" height="67.539mm" viewBox="0 0 83.961 67.539">
+<image width="239.889" height="192.969" xlink:href="img/s4-fig4.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">左揃えがベター</div>
 </div>
 <p>単語の途中で折り返しても問題ないようなら、［欧文泣き別れ］をオンにしてもいいでしょう。ただし、誤読の原因になる（2単語だと誤解される）こともあるので、この設定を使うかどうかはよく検討してください。</p>
 <div class="figure">
-<img src="img/s4-fig5.png" alt="">
+<svg width="83.961mm" height="67.539mm" viewBox="0 0 83.961 67.539">
+<image width="239.889" height="192.969" xlink:href="img/s4-fig5.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">場合によっては［欧文泣き別れ］をオンに</div>
 </div>
 <p>最後に和欧混交のソースコードのサンプルを入力し、半角スペースで揃えられることを確認します。</p>
 <div class="figure">
-<img src="img/s4-fig6.png" alt="">
+<svg width="120mm" height="20.159mm" viewBox="0 0 120 20.159">
+<image width="533.4" height="89.606" xlink:href="img/s4-fig6.png" transform="scale(0.225) translate(0,0)"> 
+</svg>
 <div class="figcaption">半角スペースでコメントの//が揃えばOK</div>
 </div>
 <p>可能であれば、その本の対象となるプログラミング言語のサンプルを著者からもらって流し込み、問題が起きないことを確認してください。</p>
 <h3 id="-">表組みに変換する</h3>
 <p>それではソースコードを表に変換し、セルスタイルと表スタイルを作成して見た目を整えていきます。まずはソースコードの範囲を選択し、［表］メニューの［ソースコードを表に変換］を選択します。区切り文字はソースコード中にタブが使われていなければ、初期設定のタブと改行でOKです。使われている場合は、ソースコードの中で使われていそうもない文字を指定してください。</p>
 <div class="figure">
-<img src="img/s4-fig7.png" alt="">
+<svg width="120mm" height="76.47mm" viewBox="0 0 120 76.47">
+<image width="435.681" height="277.636" xlink:href="img/s4-fig7.png" transform="scale(0.275) translate(0,0)"> 
+</svg>
 <div class="figcaption">ソースコードを表に変換</div>
 </div>
 <p>地味目な表に変換されたので、見た目を整えていきましょう。セルスタイルを作成してセル内マージンを設定します。</p>
 <div class="figure-h">
 <div class="figure">
-<img src="img/s4-fig8.png" alt="">
+<svg width="70mm" height="61.119mm" viewBox="0 0 70 61.119">
+<image width="233.186" height="174.625" xlink:href="img/s4-fig8.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">段落スタイルをソースコード用のものに指定</div>
 </div>
 <div class="figure">
-<img src="img/s4-fig9.png" alt="">
+<svg width="70mm" height="61.119mm" viewBox="0 0 70 61.119">
+<image width="233.186" height="174.625" xlink:href="img/s4-fig9.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">セルマージンを設定</div>
 </div>
 </div>
 <p>セルスタイルを使って、罫線や背景色を設定することもできますが、その場合、表スタイル側の設定がオーバーライドされてしまいます。つまり、<strong>表スタイルによる外枠の設定や交互に背景を塗りつぶす設定などが使えなくなる</strong>ということです。今回は表スタイル側で罫線と背景色の設定を行うことにします。</p>
 <div class="figure">
-<img src="img/s4-fig12.png" alt="">
+<svg width="100.012mm" height="54.822mm" viewBox="0 0 100.012 54.822">
+<image width="285.75" height="156.633" xlink:href="img/s4-fig12.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">表スタイルを作成する</div>
 </div>
 <p>表の境界線（外枠の罫線）の設定を行い、［表と段落のアキ］を0mmにします。［表と段落のアキ］は表の上下に空きを作るための設定ですが、今回はインライン親行用の段落スタイルを作るので計算が狂わないよう空きをなくしています。</p>
 <div class="figure">
-<img src="img/s4-fig13.png" alt="">
+<svg width="100.012mm" height="54.822mm" viewBox="0 0 100.012 54.822">
+<image width="285.75" height="156.633" xlink:href="img/s4-fig13.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">外枠と空きの設定を行う</div>
 </div>
 <p>続いて各行の間に、0.5mmの白い罫線を引きます。表スタイルでは交互にする設定しか行えないので、2行とも同じ設定にします。</p>
 <div class="figure">
-<img src="img/s4-fig14.png" alt="">
+<svg width="100.012mm" height="54.822mm" viewBox="0 0 100.012 54.822">
+<image width="285.75" height="156.633" xlink:href="img/s4-fig14.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">白い罫線の設定</div>
 </div>
 <p>最後に塗りのスタイルを設定します。ここでは薄い黄色とグレーで交互に背景を塗りつぶす設定とします。</p>
 <div class="figure">
-<img src="img/s4-fig15.png" alt="">
+<svg width="100.012mm" height="54.822mm" viewBox="0 0 100.012 54.822">
+<image width="285.75" height="156.633" xlink:href="img/s4-fig15.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">背景色の設定</div>
 </div>
 <p>これで見た目がほぼできあがりました。</p>
 <div class="figure">
-<img src="img/s4-fig19.png" alt="">
+<svg width="118.286mm" height="99.889mm" viewBox="0 0 118.286 99.889">
+<image width="337.961" height="285.397" xlink:href="img/s4-fig19.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">完成した状態</div>
 </div>
 <div class="column">
@@ -152,18 +192,25 @@
 <p>フレームグリッドを使う時に困るのは、ペースト時にグリッドフォーマットが適用されるため、コピー＆ペーストするだけでスタイルがオーバライドされてしまう点です。</p>
 </div>
 <div class="figure">
-<img src="img/s4-fig6.png" alt="">
+<svg width="120mm" height="20.159mm" viewBox="0 0 120 20.159">
+<image width="533.4" height="89.606" xlink:href="img/s4-fig6.png" transform="scale(0.225) translate(0,0)"> 
+</svg>
 <div class="figcaption">半角スペースでコメントの//が揃えばOK</div>
 </div>
 </div>
+<hr class="pagebreak">
 <h3 id="-">表の先頭行と最終行だけスタイルを変える</h3>
 <p>先頭行と最終行は表の外枠とテキストの間隔が狭いので、そこだけセルスタイルを作成して調整します。</p>
 <div class="figure">
-<img src="img/s4-fig18.png" alt="">
+<svg width="81.615mm" height="61.119mm" viewBox="0 0 81.615 61.119">
+<image width="233.186" height="174.625" xlink:href="img/s4-fig18.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">先頭行では上マージンを2mmに設定</div>
 </div>
 <div class="figure">
-<img src="img/s4-fig17.png" alt="">
+<svg width="81.615mm" height="61.119mm" viewBox="0 0 81.615 61.119">
+<image width="233.186" height="174.625" xlink:href="img/s4-fig17.png" transform="scale(0.35) translate(0,0)"> 
+</svg>
 <div class="figcaption">最終行では下マージンを2mmに設定</div>
 </div>
 <p>これを手作業で設定するのは面倒なので、後半ではスクリプトで自動設定を行う方法を解説します。</p>
@@ -176,7 +223,9 @@
 <p>元原稿の状態や、フォーマットデザインの複雑さ、作図が必要かどうかなどによって、作業時間は変わってきてしまうのですが、<strong>スタイル設定</strong>と<strong>図版挿入</strong>、<strong>表作成</strong>、<strong>コードの色分け</strong>がほぼ自動で完了するため、大幅な改善が見込めるのは間違いありません。</p>
 <div class="figure">
 <h6 id="-">全体のワークフロー</h6>
-<p><img src="img/s6-fig0-workflow-01.png" alt="">
+<svg width="120mm" height="31.059mm" viewBox="0 0 120 31.059">
+<image width="419.806" height="108.656" xlink:href="img/s6-fig0-workflow-01.png" transform="scale(0.286) translate(0,0)"> 
+</svg>
 </div>
 <h3 id="markdown-">Markdownプレビューのカスタマイズ</h3>
 <p>Markdownプレビューの外観を書籍の仕上がりに近づけておけば、いちいちInDesignで組まなくてもブラウザ上で仕上がりイメージを把握しやすくなります。</p>
