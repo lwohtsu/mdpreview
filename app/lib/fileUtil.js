@@ -269,7 +269,7 @@ var fileUtil = {
       newscale = Math.round(newscale * 1000) / 1000;
       scaleW = Math.round(scaleW * 1000) / 1000;
       scaleH = Math.round(scaleH * 1000) / 1000;
-      // 最大サイズより小さいまたは等しい場合
+      // SVGを生成
       var result = '<svg width="' + scaleW + 'mm" height="' + scaleH + 'mm" ' 
             + 'viewBox="0 0 ' + scaleW + ' ' + scaleH + '">\n';
       result += '<image width="' + printW + '" height="' + printH + '" ' 
