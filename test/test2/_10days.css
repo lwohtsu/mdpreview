@@ -251,16 +251,24 @@ ul, ol{
   column-rule: dotted 0.15mm #888;
 }
 
+/*編集コメント*/
 .hen{
   background: #FF0;
   color:#F00;
 }
 
+/*一行空き*/
 .blankline{
   height: 5.5mm;
   border: none;
 }
+/*改ページ*/
 .pagebreak{
   page-break-after: always;
   border:none;
+}
+
+/*文字詰め*/
+.mojitume{
+  letter-spacing: -0.05mm;
 }
