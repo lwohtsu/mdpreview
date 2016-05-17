@@ -180,14 +180,14 @@
 
 【図版横並び】
 【図】
-<svg width="93.274mm" height="69.85mm" viewBox="0 0 93.274 69.85">
+<svg width="71mm" height="69.85mm" viewBox="0 0 71 69.85">
 <image width="233.186" height="174.625" xlink:href="img/s4-fig8.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】段落スタイルをソースコード用のものに指定【/キャプ】
 【/図】
 
 【図】
-<svg width="93.274mm" height="69.85mm" viewBox="0 0 93.274 69.85">
+<svg width="71mm" height="69.85mm" viewBox="0 0 71 69.85">
 <image width="233.186" height="174.625" xlink:href="img/s4-fig9.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】セルマージンを設定【/キャプ】

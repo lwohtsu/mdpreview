@@ -20,7 +20,8 @@ html {
   margin-bottom: 20mm;
 }
 @page :left {
-  margin-right: 10mm;
+  margin-left: 18mm;
+  margin-right: 16.25mm;
   @bottom-left {
     font-size: 11rem;
     content: counter(page) ;
@@ -31,7 +32,8 @@ html {
   }
 }
 @page :right {
-  margin-left: 10mm;
+  margin-left: 16.25mm;
+  margin-right: 18mm;
   /* 右下ノンブル */
   @bottom-right {
     font-size: 11rem;
@@ -40,9 +42,6 @@ html {
     writing-mode: horizontal-tb;
     background: #FFE;
     /* CSS仕様上は@pageルール内に書けばよいが、現時点のvivliostyle.jsの制限によりここに書く */
-  }
-  @middle-right {
-    background: #FDD;
   }
 }
 
@@ -213,7 +212,7 @@ ul, ol{
   align-items: flex-start; /*縦に伸ばさない*/
   margin-bottom: 5mm;  
 }
-.figure-h .figure:first{
+.figure-h .figure:first-child{
   margin-right: 3mm;
 }
 /*.figure-h .figure{
