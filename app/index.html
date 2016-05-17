@@ -48,11 +48,12 @@
                     <dt>最大幅（mm）</dt>
                     <dd><input id="maxwidth" type="number" value="120"></dd>
                     <dt>倍率（scale=1.0）</dt>
-                    <dd><input id="scale" type="number" value="1.0"></dd>
+                    <dd><input id="scale" type="number" value="0.4"></dd>
                     <dt>解像度（dpi）</dt>
                     <dd><input id="density" type="number" value="72"></dd>
                 </dl>
-                <button ng-click="main.svgConvert()">Convert</button>
+                <button ng-click="main.svgConvert()">Convert From MDImage</button>
+                <button ng-click="main.svgUpdate()">Update SVGImage</button>
             </div>
         </uib-tab>
     </uib-tabset>

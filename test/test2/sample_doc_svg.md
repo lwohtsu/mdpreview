@@ -17,8 +17,8 @@
 このタイプがより速く組めるようになれば、その分を校正期間に回してクォリティアップを図れるようになります。
 
 【図】
-<svg width="106.804mm" height="67.169mm" viewBox="0 0 106.804 67.169">
-<image width="305.153" height="191.911" xlink:href="img/fig1.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="120mm" height="75.468mm" viewBox="0 0 120 75.468">
+<image width="305.153" height="191.911" xlink:href="img/fig1.png" transform="scale(0.393) translate(0,0)"> 
 </svg>
 【キャプ】一段組みリニア型のイメージ【/キャプ】
 【/図】
@@ -33,8 +33,8 @@
 そのまま各パーツがバラバラの状態で組んでしまうと、後でテキストの追加や削除が発生したときに、それ以降を手作業でずらすことになってしまいます。
 
 【図】
-<svg width="106.804mm" height="67.169mm" viewBox="0 0 106.804 67.169">
-<image width="305.153" height="191.911" xlink:href="img/fig2.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="120mm" height="75.468mm" viewBox="0 0 120 75.468">
+<image width="305.153" height="191.911" xlink:href="img/fig2.png" transform="scale(0.393) translate(0,0)"> 
 </svg>
 【キャプ】デザイン指定そのままのフォーマットでは修正が大変【/キャプ】
 【/図】
@@ -55,8 +55,8 @@
 ここで［インラインまたは行の上］の［インライン］を選んだ状態がインラインオブジェクトです。
 
 【図】
-<svg width="53.093mm" height="60.625mm" viewBox="0 0 53.093 60.625">
-<image width="151.694" height="173.214" xlink:href="img/s2-fig1.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="60.678mm" height="69.286mm" viewBox="0 0 60.678 69.286">
+<image width="151.694" height="173.214" xlink:href="img/s2-fig1.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】［インライン］を選択した状態【/キャプ】
 【/図】
@@ -64,8 +64,8 @@
 結果を見るとわかるように、文字とまったく同じ扱いになり、オブジェクトのサイズに応じて周りの文字は追い出されます。ただし、回り込みの設定と違って、複数行のテキストがオブジェクトの横に回り込むことはありません。テキスト中の1文字を大きくした場合と同じ状態になります。
 
 【図】
-<svg width="86.554mm" height="110.137mm" viewBox="0 0 86.554 110.137">
-<image width="247.297" height="314.678" xlink:href="img/s2-fig2.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="98.919mm" height="125.871mm" viewBox="0 0 98.919 125.871">
+<image width="247.297" height="314.678" xlink:href="img/s2-fig2.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】［インライン］を選択した状態【/キャプ】
 【/図】
@@ -79,8 +79,8 @@
 ［アンカー付きオブジェクトオプション］ダイアログボックスで［カスタム］を選んだ状態が、アンカー付きオブジェクトです。インラインよりも設定項目が増え、配置の自由度が上がっています。
 
 【図】
-<svg width="53.093mm" height="60.625mm" viewBox="0 0 53.093 60.625">
-<image width="151.694" height="173.214" xlink:href="img/s2-fig3.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="60.678mm" height="69.286mm" viewBox="0 0 60.678 69.286">
+<image width="151.694" height="173.214" xlink:href="img/s2-fig3.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】［カスタム］を選択した状態【/キャプ】
 【/図】
@@ -89,8 +89,8 @@
 結果を見ると、本文と図版にイカリのマークが付き、本文フレームの外に図版が飛び出しています（配置される場所はオプション設定によって変わります）。テキストには影響ありません。
 
 【図】
-<svg width="115.694mm" height="110.014mm" viewBox="0 0 115.694 110.014">
-<image width="330.553" height="314.325" xlink:href="img/s2-fig4.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="120mm" height="114.109mm" viewBox="0 0 120 114.109">
+<image width="330.553" height="314.325" xlink:href="img/s2-fig4.png" transform="scale(0.363) translate(0,0)"> 
 </svg>
 【キャプ】［カスタム］を選択した状態【/キャプ】
 【/図】
@@ -113,8 +113,8 @@
 まず、合成フォントを作る時に和欧の横幅を変えると揃わなくなります。サイズを調整したい場合は、欧文を縦にちょっと引き延ばす程度がおすすめです。
 
 【図】
-<svg width="82.232mm" height="73.713mm" viewBox="0 0 82.232 73.713">
-<image width="234.95" height="210.608" xlink:href="img/s4-fig1.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="93.98mm" height="84.243mm" viewBox="0 0 93.98 84.243">
+<image width="234.95" height="210.608" xlink:href="img/s4-fig1.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】欧文を縦に110%引き延ばしてサイズを揃える【/キャプ】
 【/図】
@@ -122,8 +122,8 @@
 また、ソースコード用の文字組みアキ量設定を作成し、和欧文間をゼロ固定にします。
 
 【図】
-<svg width="95.691mm" height="69.762mm" viewBox="0 0 95.691 69.762">
-<image width="273.403" height="199.319" xlink:href="img/s4-fig2.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="109.361mm" height="79.728mm" viewBox="0 0 109.361 79.728">
+<image width="273.403" height="199.319" xlink:href="img/s4-fig2.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】和欧文間をゼロにする【/キャプ】
 【/図】
@@ -131,8 +131,8 @@
 その他に、段落スタイルで［欧文合字］をオフにし、カーニングや字送りなどの字間を変える設定は原則使わないようにします。折り返しが少ないほうがいいので、文字サイズは少し落としておくといいでしょう。
 
 【図】
-<svg width="83.961mm" height="67.539mm" viewBox="0 0 83.961 67.539">
-<image width="239.889" height="192.969" xlink:href="img/s4-fig3.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="95.956mm" height="77.188mm" viewBox="0 0 95.956 77.188">
+<image width="239.889" height="192.969" xlink:href="img/s4-fig3.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】［欧文合字］をオフにし、余計な字間調整はなるべくしない【/キャプ】
 【/図】
@@ -140,8 +140,8 @@
 折り返しが発生した場合に字間が広がらないように、行末揃えではなく左揃えを使用します。
 
 【図】
-<svg width="83.961mm" height="67.539mm" viewBox="0 0 83.961 67.539">
-<image width="239.889" height="192.969" xlink:href="img/s4-fig4.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="95.956mm" height="77.188mm" viewBox="0 0 95.956 77.188">
+<image width="239.889" height="192.969" xlink:href="img/s4-fig4.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】左揃えがベター【/キャプ】
 【/図】
@@ -149,8 +149,8 @@
 単語の途中で折り返しても問題ないようなら、［欧文泣き別れ］をオンにしてもいいでしょう。ただし、誤読の原因になる（2単語だと誤解される）こともあるので、この設定を使うかどうかはよく検討してください。
 
 【図】
-<svg width="83.961mm" height="67.539mm" viewBox="0 0 83.961 67.539">
-<image width="239.889" height="192.969" xlink:href="img/s4-fig5.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="95.956mm" height="77.188mm" viewBox="0 0 95.956 77.188">
+<image width="239.889" height="192.969" xlink:href="img/s4-fig5.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】場合によっては［欧文泣き別れ］をオンに【/キャプ】
 【/図】
@@ -180,15 +180,15 @@
 
 【図版横並び】
 【図】
-<svg width="70mm" height="61.119mm" viewBox="0 0 70 61.119">
-<image width="233.186" height="174.625" xlink:href="img/s4-fig8.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="93.274mm" height="69.85mm" viewBox="0 0 93.274 69.85">
+<image width="233.186" height="174.625" xlink:href="img/s4-fig8.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】段落スタイルをソースコード用のものに指定【/キャプ】
 【/図】
 
 【図】
-<svg width="70mm" height="61.119mm" viewBox="0 0 70 61.119">
-<image width="233.186" height="174.625" xlink:href="img/s4-fig9.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="93.274mm" height="69.85mm" viewBox="0 0 93.274 69.85">
+<image width="233.186" height="174.625" xlink:href="img/s4-fig9.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】セルマージンを設定【/キャプ】
 【/図】
@@ -197,8 +197,8 @@
 セルスタイルを使って、罫線や背景色を設定することもできますが、その場合、表スタイル側の設定がオーバーライドされてしまいます。つまり、**表スタイルによる外枠の設定や交互に背景を塗りつぶす設定などが使えなくなる**ということです。今回は表スタイル側で罫線と背景色の設定を行うことにします。
 
 【図】
-<svg width="100.012mm" height="54.822mm" viewBox="0 0 100.012 54.822">
-<image width="285.75" height="156.633" xlink:href="img/s4-fig12.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="114.3mm" height="62.653mm" viewBox="0 0 114.3 62.653">
+<image width="285.75" height="156.633" xlink:href="img/s4-fig12.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】表スタイルを作成する【/キャプ】
 【/図】
@@ -206,8 +206,8 @@
 表の境界線（外枠の罫線）の設定を行い、［表と段落のアキ］を0mmにします。［表と段落のアキ］は表の上下に空きを作るための設定ですが、今回はインライン親行用の段落スタイルを作るので計算が狂わないよう空きをなくしています。
 
 【図】
-<svg width="100.012mm" height="54.822mm" viewBox="0 0 100.012 54.822">
-<image width="285.75" height="156.633" xlink:href="img/s4-fig13.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="114.3mm" height="62.653mm" viewBox="0 0 114.3 62.653">
+<image width="285.75" height="156.633" xlink:href="img/s4-fig13.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】外枠と空きの設定を行う【/キャプ】
 【/図】
@@ -215,8 +215,8 @@
 続いて各行の間に、0.5mmの白い罫線を引きます。表スタイルでは交互にする設定しか行えないので、2行とも同じ設定にします。
 
 【図】
-<svg width="100.012mm" height="54.822mm" viewBox="0 0 100.012 54.822">
-<image width="285.75" height="156.633" xlink:href="img/s4-fig14.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="114.3mm" height="62.653mm" viewBox="0 0 114.3 62.653">
+<image width="285.75" height="156.633" xlink:href="img/s4-fig14.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】白い罫線の設定【/キャプ】
 【/図】
@@ -224,8 +224,8 @@
 最後に塗りのスタイルを設定します。ここでは薄い黄色とグレーで交互に背景を塗りつぶす設定とします。
 
 【図】
-<svg width="100.012mm" height="54.822mm" viewBox="0 0 100.012 54.822">
-<image width="285.75" height="156.633" xlink:href="img/s4-fig15.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="114.3mm" height="62.653mm" viewBox="0 0 114.3 62.653">
+<image width="285.75" height="156.633" xlink:href="img/s4-fig15.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】背景色の設定【/キャプ】
 【/図】
@@ -233,8 +233,8 @@
 これで見た目がほぼできあがりました。
 
 【図】
-<svg width="118.286mm" height="99.889mm" viewBox="0 0 118.286 99.889">
-<image width="337.961" height="285.397" xlink:href="img/s4-fig19.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="120mm" height="101.336mm" viewBox="0 0 120 101.336">
+<image width="337.961" height="285.397" xlink:href="img/s4-fig19.png" transform="scale(0.355) translate(0,0)"> 
 </svg>
 【キャプ】完成した状態【/キャプ】
 【/図】
@@ -255,20 +255,20 @@
 
 └─────────────────────────────────────コラム┘
 
-【改ページ】
+
 ### 表の先頭行と最終行だけスタイルを変える
 先頭行と最終行は表の外枠とテキストの間隔が狭いので、そこだけセルスタイルを作成して調整します。
 
 【図】
-<svg width="81.615mm" height="61.119mm" viewBox="0 0 81.615 61.119">
-<image width="233.186" height="174.625" xlink:href="img/s4-fig18.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="93.274mm" height="69.85mm" viewBox="0 0 93.274 69.85">
+<image width="233.186" height="174.625" xlink:href="img/s4-fig18.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】先頭行では上マージンを2mmに設定【/キャプ】
 【/図】
 
 【図】
-<svg width="81.615mm" height="61.119mm" viewBox="0 0 81.615 61.119">
-<image width="233.186" height="174.625" xlink:href="img/s4-fig17.png" transform="scale(0.35) translate(0,0)"> 
+<svg width="93.274mm" height="69.85mm" viewBox="0 0 93.274 69.85">
+<image width="233.186" height="174.625" xlink:href="img/s4-fig17.png" transform="scale(0.4) translate(0,0)"> 
 </svg>
 【キャプ】最終行では下マージンを2mmに設定【/キャプ】
 【/図】
