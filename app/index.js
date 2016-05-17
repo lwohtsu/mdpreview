@@ -35,7 +35,7 @@ if(openfile){
         // iframeの高さを目一杯にしたい
         // TODO: 本当はタブ幅の分ちゃんと削りたいけどよくわからないので-100px固定
         var dh = window.innerHeight ;
-        iframe.style.height = (dh - 80) + 'px';
+        iframe.style.height = (dh - 50) + 'px';
                 
         // 監視の準備
         watcher = chokidar.watch(openfile);
@@ -63,7 +63,7 @@ if(openfile){
         }).listen(8080);
         var vsiframe =  document.getElementById('vs-preview');
         vsiframe.src = 'http://localhost:8080/viewer/vivliostyle-viewer.html#x=../' + htmlfilepath.substr(l+1);
-        vsiframe.style.height = (dh - 80) + 'px';
+        vsiframe.style.height = (dh - 50) + 'px';
         console.log(vsiframe.src);
     } catch(err){
         console.log(err.message);
@@ -76,9 +76,9 @@ window.onresize = function(){
     var iframe =  document.getElementById('html-preview');
     var dh = window.innerHeight ;
     // TODO: 本当はタブ幅の分ちゃんと削りたいけどよくわからないので-100px固定
-    iframe.style.height = (dh - 80) + 'px';    
+    iframe.style.height = (dh - 50) + 'px';    
     var vsiframe =  document.getElementById('vs-preview');
-    vsiframe.style.height = (dh - 80) + 'px';   
+    vsiframe.style.height = (dh - 50) + 'px';   
     // TODO: リサイズ時のリロードを止める　できれば警告を表示したい
     // vsiframe.contentDocument.location.reload(true);
 }
