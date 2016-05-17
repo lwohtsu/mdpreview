@@ -213,8 +213,8 @@ ul, ol{
   align-items: flex-start; /*縦に伸ばさない*/
   margin-bottom: 5mm;  
 }
-.figure-h .figure{
-  margin-left: 3mm;
+.figure-h .figure:first{
+  margin-right: 3mm;
 }
 /*.figure-h .figure{
   width: 49%;
