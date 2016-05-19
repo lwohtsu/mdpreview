@@ -275,7 +275,7 @@ var fileUtil = {
       result += '<image width="' + printW + '" height="' + printH + '" ' 
             + 'xlink:href="' + $1 + '" '
             + 'transform="scale(' + newscale + ') translate(0,0)"> \n';
-      result += '</svg> \n';
+      result += '</svg>';
       console.log(result);
       return result;
     });
