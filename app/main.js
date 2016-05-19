@@ -8,6 +8,7 @@ var app = require('app');
 var BrowserWindow = require('browser-window');
 var Menu = require('menu');
 var Shell = require('electron').shell;
+var dialog = require('dialog');
 
 require('crash-reporter').start({
   productName: 'mdpreview',
@@ -57,7 +58,7 @@ var template = [
     submenu: [
       {label: 'Open', accelerator: 'CmdOrCtrl+O', click: function() {
         // 「ファイルを開く」ダイアログの呼び出し
-        require('dialog').showOpenDialog(
+        dialog.showOpenDialog(
           {
             properties: ['openFile'],
             filters:[{name: 'Markdown', extensions: ['md']}]
@@ -69,6 +70,11 @@ var template = [
             }
         });
       }}
+    ]
+  }, {
+    label: 'Edit',
+    submenu: [
+      { label: 'copy Print URL', click: function() { mainWindow.webContents.send('main-process-message', 'Print URL'); } }
     ]
   }, {
     label: 'View',

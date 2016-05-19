@@ -21,6 +21,9 @@ var path = require('path');
 // プロセス間通信
 var ipc = require('electron').ipcRenderer;
 
+var clipboard = require('electron').clipboard;
+// var dialog = require('dialog');
+
 // 作業フォルダ取得
 if(openfile){
     try{
@@ -104,6 +107,9 @@ ipc.on('main-process-message', function(event, arg) {
     } else if(arg== 'VSPreview Reload'){
         var vsiframe =  document.getElementById('vs-preview');
         vsiframe.contentDocument.location.reload(true);        
+    } else if(arg== 'Print URL'){
+        clipboard.writeText('http://localhost:8080/viewer/vivliostyle-viewer.html#x=../' + htmlfilepath.substr(l+1));    
+        console.log('http://localhost:8080/viewer/vivliostyle-viewer.html#x=../' + htmlfilepath.substr(l+1));     
     }
 
 });
