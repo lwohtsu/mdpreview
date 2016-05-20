@@ -101,14 +101,19 @@ var fileUtil = {
         return out;
       }
     });
-    
-    // markedで変換
+
+    // ファイルを読み込み
     try{
       var src = fs.readFileSync(openfile, 'utf-8');
     } catch (err){
       dialog.showErrorBox('File Open Error', err.message);
       throw new Error('cannot open file.');
     }
+
+    // 画像のsvg変換
+    src = svgimg(src);
+
+    // markedで変換
     var html = marked(src);
     
     // 強引な後処理 閉じpreの後に改行（入れないとXML変換時にトラブルと思う）
@@ -126,7 +131,7 @@ var fileUtil = {
       dialog.showErrorBox('RepList Open Error', err.message);
       console.log('no replist');
     }
-
+    
     // lodashを使ってテンプレートにはめ込んで書き出す
     var compiled = _.template(template);
     try {
@@ -144,150 +149,69 @@ var fileUtil = {
     }
 
     return htmlfilepath;
-  },
-
-  // 指定したMarkdownファイル内の画像指定を変換し、SVGにする
-  svgConvert: function(mdfile, maxwidth, scale, density){
-    // console.log('svgConvert: ' + mdfile);
-    // console.log('maxwidth: ' + maxwidth);
-    // console.log('scale: ' + scale);
-    // console.log('density: ' + density);
-
-    //作業フォルダを取得
-    var l = mdfile.lastIndexOf(path.sep);
-    var workfolder = mdfile.substring(0, l);    
-    // Markdownファイルを読み込み
-    var mdtext;
-    try{
-        mdtext = fs.readFileSync(mdfile, 'utf-8');  
-    } catch(e){
-        dialog.showErrorBox('Error', mdfile + ' not found.');
-        return mdfile + 'not found.'; 
+    
+    // クエリ文字列（?svgimg=倍率,幅トリム,高さトリム,縦シフト,横シフト）SVG
+    // 倍率以外は省略可
+    function svgimg(mdtext){
+      console.log('svgimg');
+      // 解像度からmmを得るための値を求めておく
+      var density = 72;
+      var dpi2mm = 25.4 / density;
+      // 置換実行
+      var mdsvgtext = mdtext.replace(/!\[[^\]]*\]\(([^\)]+)\)/g, function(str, $1){
+        // strはマッチテキスト全体、$1はファイル名
+        // クエリ文字列?svgimg=を含まない場合は置換しない
+        var s = $1.indexOf('?svgimg=');
+        if(s<0) return str;
+        var imgpath = path.join(workfolder, $1.substring(0, s));
+        console.log(imgpath);
+        var img = nativeImage.createFromPath(imgpath);
+        // 読み込めない場合は変換せずにそのまま返す
+        if(img.isEmpty()) return str;
+        // パラメータを取得
+        var scale = 1;
+        var trimW = 0, trimH = 0;
+        var shiftX = 0, shiftY=0;
+        var params = $1.substring($1.indexOf('=')+1).split(',');
+        if(params.length < 1) return str;  // パラメータ不正
+        scale = parseFloat(params[0]) / 100;
+        if(params.length > 1 && params[1].length > 0) trimW = parseFloat(params[1]);  
+        if(params.length > 2 && params[2].length > 0) trimH = parseFloat(params[2]);  
+        if(params.length > 3 && params[3].length > 0) shiftX = parseFloat(params[3]);  
+        if(params.length > 4 && params[4].length > 0) shiftY = parseFloat(params[4]);  
+        console.log(scale + ', ' + trimW + ', ' + trimH + ', ' + shiftX + ', ' + shiftY);
+        // サイズを取得
+        var size = img.getSize();
+        var printW = size.width * dpi2mm;
+        var printH = size.height * dpi2mm;
+        // 小数点第三位までにしておく
+        printW = Math.round(printW * 1000) / 1000;
+        printH = Math.round(printH * 1000) / 1000;
+        // 拡大縮小を反映
+        var newscale = scale;
+        var scaleW = printW * newscale;
+        var scaleH = printH * newscale;
+        // 小数点第三位までにしておく
+        newscale = Math.round(newscale * 1000) / 1000;
+        scaleW = Math.round(scaleW * 1000) / 1000;
+        scaleH = Math.round(scaleH * 1000) / 1000;
+        if(trimW == 0) trimW = scaleW;
+        if(trimH == 0) trimH = scaleH;
+        // svg生成
+        var result = '<svg width="' + trimW + 'mm" height="' + trimH + 'mm" ' 
+              + 'viewBox="0 0 ' + trimW + ' ' + trimH + '">\n';
+        result += '<image width="' + printW + '" height="' + printH + '" ' 
+              + 'xlink:href="' + $1.substring(0, s) + '" '
+              + 'transform="translate('+ shiftX + ','+ shiftY + ') '
+              + 'scale(' + newscale + ')"> \n';
+        result += '</svg> \n';
+        console.log(result);
+        return result;
+      });
+      
+      return mdsvgtext;
     }
-    // 解像度からmmを得るための値を求めておく
-    var dpi2mm = 25.4 / density;
-    // 置換実行
-    var mdsvgtext = mdtext.replace(/!\[[^\]]*\]\(([^\)]+)\)/g, function(str, $1){
-      // strはマッチテキスト全体、$1はファイル名
-      var imgpath = path.join(workfolder, $1);
-      console.log(imgpath);
-      var img = nativeImage.createFromPath(imgpath);
-      // 読み込めない場合は変換せずにそのまま返す
-      if(img.isEmpty()){
-        return str;
-      }
-      // サイズを取得
-      var size = img.getSize();
-      var printW = size.width * dpi2mm;
-      var printH = size.height * dpi2mm;
-      // 小数点第三位までにしておく
-      printW = Math.round(printW * 1000) / 1000;
-      printH = Math.round(printH * 1000) / 1000;
-      // console.log(printW);
-      // console.log(printH);
-      // 拡大縮小を反映
-      var newscale = scale;
-      var scaleW = printW * newscale;
-      var scaleH = printH * newscale;
-      // 最大サイズより大きい場合はどうする？
-      if(scaleW > maxwidth){
-        // その分縮小して全体をmaxwidth内に納める
-        newscale = maxwidth / printW;
-        scaleW = printW * newscale;
-        scaleH = printH * newscale;
-      }
-      // 小数点第三位までにしておく
-      newscale = Math.round(newscale * 1000) / 1000;
-      scaleW = Math.round(scaleW * 1000) / 1000;
-      scaleH = Math.round(scaleH * 1000) / 1000;
-      // 最大サイズより小さいまたは等しい場合
-      var result = '<svg width="' + scaleW + 'mm" height="' + scaleH + 'mm" ' 
-            + 'viewBox="0 0 ' + scaleW + ' ' + scaleH + '">\n';
-      result += '<image width="' + printW + '" height="' + printH + '" ' 
-            + 'xlink:href="' + $1 + '" '
-            + 'transform="scale(' + newscale + ') translate(0,0)"> \n';
-      result += '</svg> \n';
-      console.log(result);
-      return result;
-    });
-    // 書き出す
-    try {
-      fs.writeFileSync(mdfile, mdsvgtext);    
-    } catch (err){
-      dialog.showErrorBox('File Write Error', err.message);
-      throw new Error('cannot write file.');
-    }    
-  },
-  
-  // 既存SVGタグが対象となるだけでsvgConvertとほとんど同じ。
-  // うまく共通部分をまとめられなかったので、後で何とかしたい
-  svgUpdate: function(mdfile, maxwidth, scale, density){
-    //作業フォルダを取得
-    var l = mdfile.lastIndexOf(path.sep);
-    var workfolder = mdfile.substring(0, l);    
-    // Markdownファイルを読み込み
-    var mdtext;
-    try{
-        mdtext = fs.readFileSync(mdfile, 'utf-8');  
-    } catch(e){
-        dialog.showErrorBox('Error', mdfile + ' not found.');
-        return mdfile + 'not found.'; 
-    }
-    // 解像度からmmを得るための値を求めておく
-    var dpi2mm = 25.4 / density;
-    // 置換実行
-    var mdsvgtext = mdtext.replace(/<svg[^<]+<image[^<]+xlink:href="([^"]+)"[^<]+<\/svg>/g, function(str, $1){
-      // strはマッチテキスト全体、$1はファイル名
-      var imgpath = path.join(workfolder, $1);
-      console.log(imgpath);
-      var img = nativeImage.createFromPath(imgpath);
-      // 読み込めない場合は変換せずにそのまま返す
-      if(img.isEmpty()){
-        return str;
-      }
-      // サイズを取得
-      var size = img.getSize();
-      var printW = size.width * dpi2mm;
-      var printH = size.height * dpi2mm;
-      // 小数点第三位までにしておく
-      printW = Math.round(printW * 1000) / 1000;
-      printH = Math.round(printH * 1000) / 1000;
-      // console.log(printW);
-      // console.log(printH);
-      // 拡大縮小を反映
-      var newscale = scale;
-      var scaleW = printW * newscale;
-      var scaleH = printH * newscale;
-      // 最大サイズより大きい場合はどうする？
-      if(scaleW > maxwidth){
-        // その分縮小して全体をmaxwidth内に納める
-        newscale = maxwidth / printW;
-        scaleW = printW * newscale;
-        scaleH = printH * newscale;
-      }
-      // 小数点第三位までにしておく
-      newscale = Math.round(newscale * 1000) / 1000;
-      scaleW = Math.round(scaleW * 1000) / 1000;
-      scaleH = Math.round(scaleH * 1000) / 1000;
-      // SVGを生成
-      var result = '<svg width="' + scaleW + 'mm" height="' + scaleH + 'mm" ' 
-            + 'viewBox="0 0 ' + scaleW + ' ' + scaleH + '">\n';
-      result += '<image width="' + printW + '" height="' + printH + '" ' 
-            + 'xlink:href="' + $1 + '" '
-            + 'transform="scale(' + newscale + ') translate(0,0)"> \n';
-      result += '</svg>';
-      console.log(result);
-      return result;
-    });
-    // 書き出す
-    try {
-      fs.writeFileSync(mdfile, mdsvgtext);    
-    } catch (err){
-      dialog.showErrorBox('File Write Error', err.message);
-      throw new Error('cannot write file.');
-    }        
   }
-
 
 };
 
