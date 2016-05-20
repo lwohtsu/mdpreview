@@ -66,6 +66,9 @@ var template = [
           //ファイルを開く処理
           function (filenames){
             if(filenames && filenames[0]){
+              if(mainWindow == null){
+                  mainWindow = new BrowserWindow({width: 800, height: 600});
+              }
               mainWindow.loadURL('file://' + __dirname + '/index.html?openfile=' + encodeURIComponent(filenames[0]));
             }
         });
