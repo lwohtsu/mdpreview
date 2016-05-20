@@ -11,78 +11,79 @@ html {
   padding: 0;
 }
 
-/*ページレイアウト*/
+/*----------------- ページレイアウト ----------------*/
+
 @page{
-  size: 182mm 257mm; /*B5正寸*/
-  margin-top: 15mm;
-  margin-left: 18mm;
-  margin-right: 16.25mm;
-  margin-bottom: 20mm;
+  size: 190mm 257mm; 
+  margin-top: 21mm;
+  margin-left: 23.75mm;
+  margin-right: 20mm;
+  margin-bottom: 21.75mm;
 }
 @page :left {
-  margin-left: 18mm;
-  margin-right: 16.25mm;
+  margin-left: 20mm;
+  margin-right: 23.75mm;
   @bottom-left {
     font-size: 11rem;
     content: counter(page) ;
-    margin-bottom: 10mm;
+    margin-top: 10mm;
     writing-mode: horizontal-tb;
-    background: #FFE;
-    /* CSS仕様上は@pageルール内に書けばよいが、現時点のvivliostyle.jsの制限によりここに書く */
+    /*background: #F22;*/
   }
 }
 @page :right {
-  margin-left: 16.25mm;
-  margin-right: 18mm;
+  margin-left: 23.75mm;
+  margin-right: 20mm;
   /* 右下ノンブル */
   @bottom-right {
     font-size: 11rem;
     content: counter(page);
-    margin-bottom:  10mm;
+    margin-top:  10mm;
     writing-mode: horizontal-tb;
-    background: #FFE;
     /* CSS仕様上は@pageルール内に書けばよいが、現時点のvivliostyle.jsの制限によりここに書く */
   }
 }
 
+/*----------------- Type Selectors ----------------*/
+
 body{
-  width: 147.75mm;/*182-左右マージン15*/
+  width: 146.25mm;/*182-左右マージン15*/
   font-size: 12rem;
-  font-family: "Helvetica Neue", Roboto, Verdana, "游ゴシック", "YuGothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  font-family: 'Noto Sans JP', "Hiragino Kaku Gothic ProN", Roboto, Verdana, "游ゴシック", "YuGothic", Meiryo, sans-serif;
+  background: #EEE;
 }
 
 
 h3{
-  font-size: 20rem;
-  background: #F06;
-  color: #FFF;
-  height: 11mm;
-  line-height: 11mm;
-  margin-bottom: 5.5mm;
-  padding-left: 0.5em;
+  font-size: 13rem;
+  line-height: 3.75mm;
+  border: solid 0.5mm #F06;
+  letter-spacing: -0.1mm;
+  height: 14mm;
+  margin-bottom: 4mm;
+  padding: 2.75mm;
   page-break-after: avoid;
 }
 
 /*中見出し*/
 h4{
-  font-size: 13rem;
+  font-size: 11rem;
+  line-height: 4.5mm;
   font-weight: bold;
-  line-height: 5.5mm;
   page-break-after: avoid;
 }
-/*本文の後に見出しがくるときは3行アキ*/
-p + h3, figure + h3{
-  margin-top: 11mm;
-}
 /*本文の後に見出しがくるときは1行アキ*/
+p + h3, figure + h3{
+  margin-top: 4.5mm;
+}
 p + h4, figure + h4{
-  margin-top: 5.5mm;
+  margin-top: 4.5mm;
 }
 
 /*本文*/
 p{
-  font-size: 12rem;
-  line-height: 5.5mm;/*22H*/
+  font-size: 11rem;
+  line-height: 4.5mm;
   text-align: justify;
   text-indent: 1em;
 }
@@ -127,6 +128,9 @@ th{
 
 /*箇条書き*/
 li{
+  font-size: 11rem;
+  line-height: 4.5mm;
+  text-align: justify;
   margin-left: 2em;
 }
 ul, ol{
@@ -144,6 +148,7 @@ ul, ol{
   background: #EEF;
   overflow: auto;
   padding: 3mm;
+  margin-bottom: 10mm; /*HTMLPreview向けの調整*/
 }
 .coverpage h1{
   text-align: center;
@@ -160,22 +165,33 @@ ul, ol{
 
 /*節タイトル*/
 .secheader{
-  width: 100%;
-  height: 45mm;
-  border: solid 0.1mm #888;
+  width: 168.7mm;
+  height: 56mm;
+  margin-top: -10mm;
+  margin-left: -11.65mm;
+  margin-bottom: 13mm;
   padding: 3mm;
-  padding-bottom: 3mm;
-  margin-bottom: 7.25mm;
+  padding-top: 10mm;
+  padding-left: 8mm;
+  border: solid 0.1mm #888;
+  background: rgba(255,0,0,0.1);
   page-break-before: left;
 }
 /*セクション頭のリード文*/
 .secheader h2{
-  font-size: 32rem;
+  font-size: 24rem;
+  line-height: 8mm;
+  width: 82mm;
+  height: 20mm;
 }
 .secheader p{
-  margin-top: 3mm;
-  padding-top: 5mm;
+  font-size: 11rem;
+  line-height: 4.25mm;
+  width: 98mm;
+  margin-top: 2mm;
+  padding-top: 2mm;
   border-top: dotted 0.15mm #888;
+  text-indent: 0;
 }
 
 /*セクションヘッダー後のリード文*/
@@ -197,12 +213,12 @@ ul, ol{
 .figcaption{
   font-size: 10rem;
   line-height: 3.25mm;
-  margin-top: 2mm;
+  margin-top: 1mm;
   font-weight: bold;
 }
 .figure{
-  margin-top: 4mm;
-  margin-bottom: 6mm;
+  margin-top: 3mm;
+  margin-bottom: 5mm;
 }
 
 /*図版横並び*/
@@ -210,7 +226,6 @@ ul, ol{
   display: flex;
   flex-direction: row;     /*横並びにする*/
   align-items: flex-start; /*縦に伸ばさない*/
-  margin-bottom: 5mm;  
 }
 .figure-h .figure:first-child{
   margin-right: 3mm;
@@ -220,6 +235,24 @@ ul, ol{
 }*/
 .figure-h img{
   width: 100%;
+}
+.rangai{
+  margin-top: 5.5mm;
+  min-height: 55mm;
+  background: rgba(0, 0, 255, 0.1); 
+  display: flex;
+  flex-direction: row;     /*横並びにする*/
+  align-items: flex-start; /*縦に伸ばさない*/
+  padding: 3mm;
+  flex-wrap: wrap;
+}
+.rangai .figure{
+  max-width: 50%;
+  margin-top: 0mm;
+  margin-bottom: 0mm;
+}
+.rangai .figure:first-child{
+  margin-right: 3mm;
 }
 
 /*コラム*/
@@ -236,11 +269,11 @@ ul, ol{
 .column .figure{
   margin-bottom: 0;
 }
-.col2{
+.col3{
   /*段数*/
-  -webkit-column-count: 2;
-  -moz-column-count: 2;
-  column-count: 2;
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+  column-count: 3;
   /*段間*/
   -webkit-column-gap: 7mm;
   -moz-column-gap: 7mm;
@@ -251,10 +284,13 @@ ul, ol{
   column-rule: dotted 0.15mm #888;
 }
 
+
+
 /*編集コメント*/
 .hen{
   background: #FF0;
   color:#F00;
+  font-size: 9rem;
 }
 
 /*一行空き*/
