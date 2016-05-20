@@ -39,7 +39,8 @@
             <iframe id="vs-preview" class="vs-html" src=""></iframe>
         </uib-tab>
         <!--ツール-->
-        <uib-tab index="4" heading="Tools">
+        <!--SVG変換ツールはオミット-->
+        <!--<uib-tab index="4" heading="Tools">
             <div ng-if="main.htmlfilepath">
                 <h3>画像のSVG変換ツール</h3>
                 <p>このツールは元原稿のMarkdownファイルを書き換えます。
@@ -55,7 +56,7 @@
                 <button ng-click="main.svgConvert()">Convert From MDImage</button>
                 <button ng-click="main.svgUpdate()">Update SVGImage</button>
             </div>
-        </uib-tab>
+        </uib-tab>-->
     </uib-tabset>
 </div>
 

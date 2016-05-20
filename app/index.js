@@ -131,19 +131,20 @@ ngModule.controller('MainController', function($scope, $uibModal, $log){
         main.fileHTML = fileUtil.getAsHTML(htmlfilepath);        
     }
     
+    // SVG変換ツールはオミット
     // SVG変換ツール
-    main.svgConvert = function(){
-        var maxwidth = document.getElementById('maxwidth').value;
-        var scale = document.getElementById('scale').value;
-        var density = document.getElementById('density').value;
-        fileUtil.svgConvert(main.openfile, maxwidth, scale, density);
-    };
-    main.svgUpdate = function(){
-        var maxwidth = document.getElementById('maxwidth').value;
-        var scale = document.getElementById('scale').value;
-        var density = document.getElementById('density').value;
-        fileUtil.svgUpdate(main.openfile, maxwidth, scale, density);
-    };
+    // main.svgConvert = function(){
+    //     var maxwidth = document.getElementById('maxwidth').value;
+    //     var scale = document.getElementById('scale').value;
+    //     var density = document.getElementById('density').value;
+    //     fileUtil.svgConvert(main.openfile, maxwidth, scale, density);
+    // };
+    // main.svgUpdate = function(){
+    //     var maxwidth = document.getElementById('maxwidth').value;
+    //     var scale = document.getElementById('scale').value;
+    //     var density = document.getElementById('density').value;
+    //     fileUtil.svgUpdate(main.openfile, maxwidth, scale, density);
+    // };
 
 });
 
