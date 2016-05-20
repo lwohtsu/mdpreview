@@ -50,7 +50,7 @@ body{
   width: 146.25mm;/*182-左右マージン15*/
   font-size: 12rem;
   font-family: 'Noto Sans JP', "Hiragino Kaku Gothic ProN", Roboto, Verdana, "游ゴシック", "YuGothic", Meiryo, sans-serif;
-  background: #EEE;
+  background: #FEFEFE;
 }
 
 
@@ -247,9 +247,11 @@ ul, ol{
   flex-wrap: wrap;
 }
 .rangai .figure{
-  max-width: 50%;
   margin-top: 0mm;
   margin-bottom: 0mm;
+}
+.rangai .figure img{
+  max-width: 50%;  
 }
 .rangai .figure:first-child{
   margin-right: 3mm;
