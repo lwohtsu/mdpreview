@@ -153,7 +153,7 @@ var fileUtil = {
     // クエリ文字列（?svgimg=倍率,幅トリム,高さトリム,縦シフト,横シフト）SVG
     // 倍率以外は省略可
     function svgimg(mdtext){
-      console.log('svgimg');
+      // console.log('svgimg');
       // 解像度からmmを得るための値を求めておく
       var density = 72;
       var dpi2mm = 25.4 / density;
@@ -164,7 +164,7 @@ var fileUtil = {
         var s = $1.indexOf('?svgimg=');
         if(s<0) return str;
         var imgpath = path.join(workfolder, $1.substring(0, s));
-        console.log(imgpath);
+        // console.log(imgpath);
         var img = nativeImage.createFromPath(imgpath);
         // 読み込めない場合は変換せずにそのまま返す
         if(img.isEmpty()) return str;
@@ -179,7 +179,7 @@ var fileUtil = {
         if(params.length > 2 && params[2].length > 0) trimH = parseFloat(params[2]);  
         if(params.length > 3 && params[3].length > 0) shiftX = parseFloat(params[3]);  
         if(params.length > 4 && params[4].length > 0) shiftY = parseFloat(params[4]);  
-        console.log(scale + ', ' + trimW + ', ' + trimH + ', ' + shiftX + ', ' + shiftY);
+        // console.log(scale + ', ' + trimW + ', ' + trimH + ', ' + shiftX + ', ' + shiftY);
         // サイズを取得
         var size = img.getSize();
         var printW = size.width * dpi2mm;
@@ -205,12 +205,106 @@ var fileUtil = {
               + 'transform="translate('+ shiftX + ','+ shiftY + ') '
               + 'scale(' + newscale + ')"> \n';
         result += '</svg> \n';
-        console.log(result);
+        // console.log(result);
         return result;
       });
       
       return mdsvgtext;
     }
+  },
+  // InDesign向けのXMLファイルパスを書き出す
+  exportInDesignXML: function(htmlfile){    
+console.log('exportXML');
+    var l = htmlfile.lastIndexOf(path);
+    var workfolder = htmlfile.substring(0, l);    
+    // ファイルを読み込み
+    try{
+      var src = fs.readFileSync(htmlfile, 'utf-8');
+    } catch (err){
+      dialog.showErrorBox('File Open Error', err.message);
+      throw new Error('cannot open file.');
+    }
+    var out = '<?xml version="1.0" encoding="UTF-8"?>';
+        out += '<story xmlns:aid5="http://ns.adobe.com/AdobeInDesign/5.0/" '
+            + 'xmlns:aid="http://ns.adobe.com/AdobeInDesign/4.0/">';
+    var lines = src.split('\n');
+    var olmode = false;
+    //ヘッダーをスキップ
+    for(var i=0; i<lines.length; i++){
+      if(lines[i].indexOf('<body') >= 0) {
+        break;
+      }
+    }
+    console.log(htmlfile);
+    console.log(lines.length);
+    var codemode = false;
+    // 書き出しループ
+    for(; i<lines.length; i++){
+      var line = lines[i]; 
+      console.log(line);
+      if(codemode == true){
+        //コード専用の処理
+        //コードが終わったかチェック
+        if(line.indexOf('</code></pre>')>=0){
+          codemode = false;
+          //</code></pre>より前は処理したい
+          out += parseCode(line.replace(/(.*)<\/code><\/pre>/, '$1')) + '\n';
+          out += '</codelist>' + '\n';
+          continue;
+        }
+        out += parseCode(line) + '\n';
+      } else {
+        //コード以外の処理
+        //コードか否かをチェック
+        if(line.indexOf('<pre><code')>=0){
+          codemode = true;
+          //out += '<codelist data-type="'+line.replace(/.*class="lang-([a-z]*)".*/, '$1')+'">\n';
+          out += '<codelist>\n';
+          //pre codeを抜いた部分だけはコードとして処理したい
+          lines[i] = line.replace(/<pre><code[^>]*>(.*)/, '$1');
+          i--;
+          continue;
+        }
+        //html終了タグが来たら終了
+        if(line.indexOf('</html>')>=0) break;
+        //ulかolか
+        if(line.indexOf('<ul>')>=0) olmode=false;
+        if(line.indexOf('<ol>')>=0) olmode=true;
+        //1ライン出力
+        var htmlline = parseHTML(line.trim(), olmode);
+        //行末がタグなら改行を入れる。タグでなければ詰める
+        if(htmlline.charAt(htmlline.length-1) == '>') out += htmlline + '\n';
+        else out += htmlline;
+      }
+    }
+    out += '</story>';
+ 
+    //書き出しファイル名
+    var xmlfilepath = htmlfile.replace('.html', '.xml');
+    console.log(xmlfilepath);
+    try {
+      fs.writeFileSync(xmlfilepath, out);    
+    } catch (err){
+      dialog.showErrorBox('File Write Error', err.message);
+      throw new Error('cannot write file.');
+    }
+
+    return;
+    
+    function parseCode(src, olmode){
+      console.log('parseCode');
+      src = src.replace(/<span class="([^"]*)">([^<]*)<\/span>/g, 
+              '<span_$1>$2</span_$1>');
+      //決め打ち処理後で対策を検討
+      src = src.replace(/<span class="[^"]*">/g, '');
+      src = src.replace(/<\/span>/g, '');
+      return '<pre><code>' + src + '</code></pre>';
+    }
+    function parseHTML(src, olmode){
+      return src;
+    }
+
+
   }
 
 };
