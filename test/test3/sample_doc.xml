@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?><story xmlns:aid5="http://ns.adobe.com/AdobeInDesign/5.0/" xmlns:aid="http://ns.adobe.com/AdobeInDesign/4.0/"><body>
+<div class="coverpage">
+<h1 id="-">サンプルドキュメント</h1>
+<p>章リード１２３４５６７８９●１２３４５６７８９●１２３４５６７８９●１２３４５６７８９●１２３４５６７８９●１２３４５６７８９●１２３４５６７８９●１２３４５６７８９●１２３４５６７８９●（120字）</p>
+</div>
+<div class="secheader">
+<h2 id="-br-">インラインとグリッドを<br>理解する</h2>
+<p>本文や画像のパーツをバラバラのフレームにしていると、後からの修正対応が大変になります。ここでは本文中に画像を挿入する作業を例にして、インラインとグリッドを活用して効率よく組版する方法を説明します。</p>
+</div>
+<div class="col3">
+<h3 id="-br-">一段組みなら楽勝！<br>というフォーマット作り</h3>
+<p>中級者向けのIT書でもっとも多いデザインは、「一段組みで文章の途中に図版やソースコードを挟みつつ、章末またはセクション末までリニアに続いていくタイプ」です。このタイプがより速く組めるようになれば、その分を校正期間に回してクォリティアップを図れるようになります。</p>
+<ul>
+<li>リスト1： アイテムです。</li>
+<li>リスト2： アイテムです。</li>
+<li>リスト3： アイテムです。</li>
+<li>リスト4： アイテムです。</li>
+</ul>
+<p>このタイプのデザイン指定は、たいていの場合、「各パーツのサイズ」と「パーツ間隔」の指定になりますが、それをそのままフォーマットにしてはいけません。</p>
+<p>そのまま各パーツがバラバラの状態で組んでしまうと、後でテキストの追加や削除が発生したときに、それ以降を手作業でずらすことになってしまいます。</p>
+<p>では、組み直しが発生しない完璧な原稿をもらえばいい……というのは組む側の都合であって、作っているものが「解説書」である以上、デザインが複雑だから、DTPが大変だから、といった理由で内容に間違いがあっても直さないというのは本末転倒です。組みやすいフォーマットを作ることで、テキストや画像追加ぐらいなら楽勝！という状態に持って行きましょう。</p>
+<h3 id="indesign-br-">InDesignのインライン<br>機能を見直す</h3>
+<p>もともとInDesignは、テキストフレームをリンクさせて複数ページに流し込む機能を持っています。しかし、小説のような文字ばかりの本でしか使えないと思っている人が多いのではないでしょうか？　実は「インライン機能」を使いこなせば、かなり凝ったデザインの本でも、リンクしたテキストフレームを使って組むことができます。</p>
+<p>インライン機能はテキスト中に他のオブジェクト（フレーム）を挿入する機能ですが、InDesignでは「インラインオブジェクト」と「アンカー付きオブジェクト」の2種類に分かれます。</p>
+</div>
+<div class="rangai">
+<div class="figure">
+<svg width="67.134mm" height="42.22mm" viewBox="0 0 67.134 42.22">
+<image width="305.153" height="191.911" xlink:href="img/fig1.png" transform="translate(0,0) scale(0.22)">
+</svg>
+<div class="figcaption">一段組みリニア型のイメージ</div>
+</div>
+<div class="figure">
+<svg width="67.134mm" height="42.22mm" viewBox="0 0 67.134 42.22">
+<image width="305.153" height="191.911" xlink:href="img/fig2.png" transform="translate(0,0) scale(0.22)">
+</svg>
+<div class="figcaption">デザイン指定そのままのフォーマットでは修正が大変</div>
+</div>
+</div>
+<div class="col3">
+<h4 id="-">インラインオブジェクト</h4>
+<p>テキスト中に挿入したフレームを右クリックし、［アンカー付きオブジェクト］→［オプション］を選択すると［アンカー付きオブジェクトオプション］ダイアログボックスが表示されます。</p>
+<p>ここで［インラインまたは行の上］の［インライン］を選んだ状態がインラインオブジェクトです。</p>
+<p>結果を見るとわかるように、文字とまったく同じ扱いになり、オブジェクトのサイズに応じて周りの文字は追い出されます。ただし、回り込みの設定と違って、複数行のテキストがオブジェクトの横に回り込むことはありません。テキスト中の1文字を大きくした場合と同じ状態になります。</p>
+<p>なお、「行の上」という設定もありますが、使ったことがないので割愛します。</p>
+<p>インラインにしたときにオブジェクトが他の行に重なってしまう場合は、おそらくインラインにした段落のスタイルで行送りが設定されているはずです。行送りを「自動」にしておけば、オブジェクトのサイズに合わせて行が広がります。</p>
+<h4 id="-">アンカー付きオブジェクト</h4>
+<p>［アンカー付きオブジェクトオプション］ダイアログボックスで［カスタム］を選んだ状態が、アンカー付きオブジェクトです。インラインよりも設定項目が増え、配置の自由度が上がっています。</p>
+<p>結果を見ると、本文と図版にイカリのマークが付き、本文フレームの外に図版が飛び出しています（配置される場所はオプション設定によって変わります）。テキストには影響ありません。</p>
+<p>2つの設定のうち、メインで使用するのはインラインのほうです。アンカー付きオブジェクトは細かい設定ができますが、その分コントロールが難しくなります。オブジェクトと本文が重ならないようにしたい場合は、回り込み設定を組み合わせなければいけません。また、ページをまたぐ位置に来たときにオブジェクトが見えなくなったり、うっかりアンカー文字を削除してオブジェクトを消してしまったりするトラブルも起きやすくなります。</p>
+<p>アンカー付きオブジェクトを使うのは、オブジェクトの横に本文を回り込ませたいときか、セクションタイトルもインライン扱いにしたいときぐらいです。基本的には単純なインラインを使うことにしたほうが、トラブルが少なくなります。</p>
+<div class="hen">正直なところ複数ページにまたがる段組みはちょっと大変ですね……。段のコントロールが難しいので、InDesignより楽ではそれほどないあたりがネックです。</div>
+</div>
+<div class="rangai">
+<div class="figure">
+<svg width="45.508mm" height="51.964mm" viewBox="0 0 45.508 51.964">
+<image width="151.694" height="173.214" xlink:href="img/s2-fig1.png" transform="translate(0,0) scale(0.3)">
+</svg>
+<div class="figcaption">［インライン］を選択した状態</div>
+</div>
+<div class="figure">
+<svg width="68.007mm" height="86.536mm" viewBox="0 0 68.007 86.536">
+<image width="247.297" height="314.678" xlink:href="img/s2-fig2.png" transform="translate(0,0) scale(0.275)">
+</svg>
+<div class="figcaption">［インライン］を選択した状態</div>
+</div>
+</div>
+<div class="rangai">
+<div class="figure">
+<svg width="45.508mm" height="51.964mm" viewBox="0 0 45.508 51.964">
+<image width="151.694" height="173.214" xlink:href="img/s2-fig3.png" transform="translate(0,0) scale(0.3)">
+</svg>
+<div class="figcaption">［カスタム］を選択した状態</div>
+</div>
+<div class="figure">
+<svg width="90.902mm" height="86.439mm" viewBox="0 0 90.902 86.439">
+<image width="330.553" height="314.325" xlink:href="img/s2-fig4.png" transform="translate(0,0) scale(0.275)">
+</svg>
+<div class="figcaption">［カスタム］を選択した状態</div>
+</div>
+</div>
+<div class="secheader">
+<h2 id="-">ソースコードを表組みで作る</h2>
+<p>ソースコード枠に表組みを利用すると、複数ページにまたがるソースコード枠でも簡単に作れるようになります。ここでは合成フォントの作成や欧文組版ルールの解除といったソースコードを組むために必要な基礎知識もあわせて解説します。</p>
+</div>
+<h3 id="-">ソースコードの文字設定</h3>
+<div class="col3">
+<p>まず基本の文字スタイルについて説明します。ソースコードは原則等幅なので、フォントは、Courier New、Andale mono、Inconsolata、Source Code Proなどの等幅欧文フォントをベースにした合成フォントとなります。ただしそれで終わりではありません。これは最低限のことでしかなく、半角スペースで正確に文字揃えできるように、通常の和欧混淆文用とは設定を変えなければいけないのです。</p>
+<p>まず、合成フォントを作る時に和欧の横幅を変えると揃わなくなります。サイズを調整したい場合は、欧文を縦にちょっと引き延ばす程度がおすすめです。</p>
+<p>また、ソースコード用の文字組みアキ量設定を作成し、和欧文間をゼロ固定にします。</p>
+</div>
+<div class="figure-h">
+<div class="figure">
+<svg width="65.786mm" height="58.97mm" viewBox="0 0 65.786 58.97">
+<image width="234.95" height="210.608" xlink:href="img/s4-fig1.png" transform="translate(0,0) scale(0.28)">
+</svg>
+<div class="figcaption">欧文を縦に110%引き延ばしてサイズを揃える</div>
+</div>
+<div class="figure">
+<svg width="76.553mm" height="55.809mm" viewBox="0 0 76.553 55.809">
+<image width="273.403" height="199.319" xlink:href="img/s4-fig2.png" transform="translate(0,0) scale(0.28)">
+</svg>
+<div class="figcaption">和欧文間をゼロにする</div>
+</div>
+</div>
+<div class="hen">ページごとに区切る場合は大丈夫です。</div>
+<h3 id="-">欧文合字はゼロにしよう</h3>
+<div class="col3">
+<p>その他に、段落スタイルで［欧文合字］をオフにし、カーニングや字送りなどの字間を変える設定は原則使わないようにします。折り返しが少ないほうがいいので、文字サイズは少し落としておくといいでしょう。</p>
+<p>折り返しが発生した場合に字間が広がらないように、行末揃えではなく左揃えを使用します。</p>
+</div>
+<div class="figure-h">
+<div class="figure">
+<svg width="67.169mm" height="40mm" viewBox="0 0 67.169 40">
+<image width="239.889" height="192.969" xlink:href="img/s4-fig3.png" transform="translate(0,0) scale(0.28)">
+</svg>
+<div class="figcaption">［欧文合字］をオフにし、余計な字間調整はなるべくしない</div>
+</div>
+<div class="figure">
+<svg width="67.169mm" height="40mm" viewBox="0 0 67.169 40">
+<image width="239.889" height="192.969" xlink:href="img/s4-fig4.png" transform="translate(0,0) scale(0.28)">
+</svg>
+<div class="figcaption">左揃えがベター</div>
+</div>
+</div>
+<h3 id="-">結果は必ず確認しよう</h3>
+<div class="col3">
+<p>単語の途中で折り返しても問題ないようなら、［欧文泣き別れ］をオンにしてもいいでしょう。ただし、誤読の原因になる（2単語だと誤解される）こともあるので、この設定を使うかどうかはよく検討してください。</p>
+<p>最後に和欧混交のソースコードのサンプルを入力し、半角スペースで揃えられることを確認します。可能であれば、その本の対象となるプログラミング言語のサンプルを著者からもらって流し込み、問題が起きないことを確認してください。</p>
+</div>
+<div class="figure-h">
+<div class="figure">
+<svg width="67.169mm" height="54.031mm" viewBox="0 0 67.169 54.031">
+<image width="239.889" height="192.969" xlink:href="img/s4-fig5.png" transform="translate(0,0) scale(0.28)">
+</svg>
+<div class="figcaption">場合によっては［欧文泣き別れ］をオンに</div>
+</div>
+<div class="figure">
+<svg width="74.676mm" height="12.545mm" viewBox="0 0 74.676 12.545">
+<image width="533.4" height="89.606" xlink:href="img/s4-fig6.png" transform="translate(0,0) scale(0.14)">
+</svg>
+<div class="figcaption">半角スペースでコメントの//が揃えばOK</div>
+</div>
+</div>
+<h3 id="-">表組みに変換する</h3>
+<div class="col3">
+<p>それではソースコードを表に変換し、セルスタイルと表スタイルを作成して見た目を整えていきます。まずはソースコードの範囲を選択し、［表］メニューの［ソースコードを表に変換］を選択します。区切り文字はソースコード中にタブが使われていなければ、初期設定のタブと改行でOKです。使われている場合は、ソースコードの中で使われていそうもない文字を指定してください。</p>
+</div>
+<div class="figure">
+<svg width="145.953mm" height="93.008mm" viewBox="0 0 145.953 93.008">
+<image width="435.681" height="277.636" xlink:href="img/s4-fig7.png" transform="translate(0,0) scale(0.335)">
+</svg>
+<div class="figcaption">ソースコードを表に変換</div>
+</div>
+<h3 id="-">セルスタイル</h3>
+<div class="col3">
+<p>地味目な表に変換されたので、見た目を整えていきましょう。セルスタイルを作成してセル内マージンを設定します。</p>
+</div>
+<div class="figure-h">
+<div class="figure">
+<svg width="72.288mm" height="54.134mm" viewBox="0 0 72.288 54.134">
+<image width="233.186" height="174.625" xlink:href="img/s4-fig8.png" transform="translate(0,0) scale(0.31)">
+</svg>
+<div class="figcaption">段落スタイルをソースコード用のものに指定</div>
+</div>
+<div class="figure">
+<svg width="72.288mm" height="54.134mm" viewBox="0 0 72.288 54.134">
+<image width="233.186" height="174.625" xlink:href="img/s4-fig9.png" transform="translate(0,0) scale(0.31)">
+</svg>
+<div class="figcaption">セルマージンを設定</div>
+</div>
+</div>
+<div class="col3">
+<p>セルスタイルを使って、罫線や背景色を設定することもできますが、その場合、表スタイル側の設定がオーバーライドされてしまいます。つまり、<strong>表スタイルによる外枠の設定や交互に背景を塗りつぶす設定などが使えなくなる</strong>ということです。今回は表スタイル側で罫線と背景色の設定を行うことにします。</p>
+</div>
+<div class="figure">
+<svg width="88.583mm" height="48.556mm" viewBox="0 0 88.583 48.556">
+<image width="285.75" height="156.633" xlink:href="img/s4-fig12.png" transform="translate(0,0) scale(0.31)">
+</svg>
+<div class="figcaption">表スタイルを作成する</div>
+</div>
+<div class="col3">
+<p>表の境界線（外枠の罫線）の設定を行い、［表と段落のアキ］を0mmにします。［表と段落のアキ］は表の上下に空きを作るための設定ですが、今回はインライン親行用の段落スタイルを作るので計算が狂わないよう空きをなくしています。</p>
+</div>
+<div class="figure">
+<svg width="88.583mm" height="48.556mm" viewBox="0 0 88.583 48.556">
+<image width="285.75" height="156.633" xlink:href="img/s4-fig13.png" transform="translate(0,0) scale(0.31)">
+</svg>
+<div class="figcaption">外枠と空きの設定を行う</div>
+</div>
+<div class="col3">
+<p>続いて各行の間に、0.5mmの白い罫線を引きます。表スタイルでは交互にする設定しか行えないので、2行とも同じ設定にします。</p>
+<p>最後に塗りのスタイルを設定します。ここでは薄い黄色とグレーで交互に背景を塗りつぶす設定とします。</p>
+<p>これで見た目がほぼできあがりました。</p>
+</div>
+<div class="figure">
+<svg width="88.583mm" height="48.556mm" viewBox="0 0 88.583 48.556">
+<image width="285.75" height="156.633" xlink:href="img/s4-fig14.png" transform="translate(0,0) scale(0.31)">
+</svg>
+<div class="figcaption">白い罫線の設定</div>
+</div>
+<div class="figure">
+<svg width="88.583mm" height="48.556mm" viewBox="0 0 88.583 48.556">
+<image width="285.75" height="156.633" xlink:href="img/s4-fig15.png" transform="translate(0,0) scale(0.31)">
+</svg>
+<div class="figcaption">背景色の設定</div>
+</div>
+<div class="figure">
+<svg width="135.184mm" height="114.159mm" viewBox="0 0 135.184 114.159">
+<image width="337.961" height="285.397" xlink:href="img/s4-fig19.png" transform="translate(0,0) scale(0.4)">
+</svg>
+<div class="figcaption">完成した状態</div>
+</div>
+<div class="column">
+<h4 id="-">コラム：グリッドフォーマットを適用せずにペースト</h4>
+<div class="col3">
+<p>フレームグリッドを使う時に困るのは、ペースト時にグリッドフォーマットが適用されるため、コピー＆ペーストするだけでスタイルがオーバライドされてしまう点です。</p>
+</div>
+<div class="figure">
+<svg width="106.68mm" height="17.921mm" viewBox="0 0 106.68 17.921">
+<image width="533.4" height="89.606" xlink:href="img/s4-fig6.png" transform="translate(0,0) scale(0.2)">
+</svg>
+<div class="figcaption">半角スペースでコメントの//が揃えばOK</div>
+</div>
+</div>
+<hr class="pagebreak">
+<h3 id="-">表の先頭行と最終行だけスタイルを変える</h3>
+<div class="col3">
+<p>先頭行と最終行は表の外枠とテキストの間隔が狭いので、そこだけセルスタイルを作成して調整します。</p>
+</div>
+<div class="figure">
+<svg width="93.274mm" height="69.85mm" viewBox="0 0 93.274 69.85">
+<image width="233.186" height="174.625" xlink:href="img/s4-fig18.png" transform="translate(0,0) scale(0.4)">
+</svg>
+<div class="figcaption">先頭行では上マージンを2mmに設定</div>
+</div>
+<div class="figure">
+<svg width="93.274mm" height="69.85mm" viewBox="0 0 93.274 69.85">
+<image width="233.186" height="174.625" xlink:href="img/s4-fig17.png" transform="translate(0,0) scale(0.4)">
+</svg>
+<div class="figcaption">最終行では下マージンを2mmに設定</div>
+</div>
+<div class="secheader">
+<h2 id="-">このマニュアルで解説する方式の概要</h2>
+<p>ここからはMarkdown原稿をHTMLやXMLに変換し、InDesignに流し込んで各スタイルの設定や画像の読み込み、ソースコード枠・表組みを自動で処理する方法を解説します。まずはその概要から説明しましょう。</p>
+</div>
+<h3 id="-">最初の組みの効率をアップする</h3>
+<div class="col3">
+<p>ここまで説明してきたインラインを活用した方法で変更・修正は効率化できますが、最初に組むときの手間は変わりません。ここからはMarkdownとXML読み込み機能を利用して、最初の組みを大幅に効率アップする方法を解説します。</p>
+<p>元原稿の状態や、フォーマットデザインの複雑さ、作図が必要かどうかなどによって、作業時間は変わってきてしまうのですが、<strong>スタイル設定</strong>と<strong>図版挿入</strong>、<strong>表作成</strong>、<strong>コードの色分け</strong>がほぼ自動で完了するため、大幅な改善が見込めるのは間違いありません。</p>
+</div>
+<div class="figure">
+<h6 id="-">全体のワークフロー</h6>
+<svg width="146.092mm" height="37.812mm" viewBox="0 0 146.092 37.812">
+<image width="419.806" height="108.656" xlink:href="img/s6-fig0-workflow-01.png" transform="translate(0,0) scale(0.348)">
+</svg>
+</div>
+<hr class="pagebreak">
+<h3 id="markdown-">Markdownプレビューのカスタマイズ</h3>
+<div class="col3">
+<p>Markdownプレビューの外観を書籍の仕上がりに近づけておけば、いちいちInDesignで組まなくてもブラウザ上で仕上がりイメージを把握しやすくなります。</p>
+<p>プロジェクトフォルダ内の「mytemplate.html」を開いてみてください。このHTMLファイルはgrunt-markdownがHTML変換するときのテンプレートで、ここで参照するCSSファイルやJavaScriptファイルなどを指定します。Markdown原稿とCSS・JSファイルの相対位置が変わった場合は、正しく参照されるようパスを変更しておく必要があります。</p>
+<p>cssjsというフォルダ内にあるmyrule.cssというCSSファイルが、プレビューの外観を決めています。書籍のデザインに合わせて適当に書き換えてください。</p>
+</div>
+<div class="figure">
+<h6 id="mytemplate-html">mytemplate.html</h6>
+<codelist>
+<pre><code><span_hljs-meta>&lt;!DOCTYPE  html&gt;</span_hljs-meta></code></pre>
+<pre><code>&lt;<span_hljs-name>html</span_hljs-name>&gt;</code></pre>
+<pre><code>  &lt;<span_hljs-name>head</span_hljs-name>&gt;</code></pre>
+<pre><code>    &lt;<span_hljs-name>meta</span_hljs-name> <span_hljs-attr>charset</span_hljs-attr>=<span_hljs-string>"utf-8"</span_hljs-string>&gt;</code></pre>
+<pre><code></code></pre>
+<pre><code>    &lt;<span_hljs-name>title</span_hljs-name>&gt;doc&lt;/<span_hljs-name>title</span_hljs-name>&gt;</code></pre>
+<pre><code>    &lt;<span_hljs-name>script</span_hljs-name> <span_hljs-attr>src</span_hljs-attr>=<span_hljs-string>"../cssjs/jquery-2.0.3.min.js"</span_hljs-string>&gt;<span_undefined></span_undefined>&lt;/<span_hljs-name>script</span_hljs-name>&gt;</code></pre>
+<pre><code>    &lt;<span_hljs-name>script</span_hljs-name> <span_hljs-attr>src</span_hljs-attr>=<span_hljs-string>"../cssjs/addimagename.js"</span_hljs-string>&gt;<span_undefined></span_undefined>&lt;/<span_hljs-name>script</span_hljs-name>&gt;</code></pre>
+<pre><code>    &lt;<span_hljs-name>link</span_hljs-name> <span_hljs-attr>rel</span_hljs-attr>=<span_hljs-string>"stylesheet"</span_hljs-string> <span_hljs-attr>href</span_hljs-attr>=<span_hljs-string>"../cssjs/myrule.css"</span_hljs-string>&gt;</code></pre>
+<pre><code>  &lt;<span_hljs-name>link</span_hljs-name> <span_hljs-attr>rel</span_hljs-attr>=<span_hljs-string>"stylesheet"</span_hljs-string> <span_hljs-attr>href</span_hljs-attr>=<span_hljs-string>"../cssjs/hljsstyles/xcode.css"</span_hljs-string>&gt;</code></pre>
+<pre><code>  &lt;/<span_hljs-name>head</span_hljs-name>&gt;</code></pre>
+<pre><code>  &lt;<span_hljs-name>body</span_hljs-name>&gt;</code></pre>
+<pre><code>    &lt;<span_hljs-name>%=content%</span_hljs-name>&gt;</code></pre>
+<pre><code>  &lt;/<span_hljs-name>body</span_hljs-name>&gt;</code></pre>
+<pre><code>&lt;/<span_hljs-name>html</span_hljs-name>&gt;</code></pre>
+<pre><code></code></pre>
+</codelist>
+</div>
+<div class="figure">
+<h6 id="myrule-css">myrule.css</h6>
+<codelist>
+<pre><code><span_hljs-selector-tag>div</span_hljs-selector-tag><span_hljs-selector-class>.chapter</span_hljs-selector-class>{</code></pre>
+<pre><code>  <span_hljs-attribute>margin-top</span_hljs-attribute>: <span_hljs-number>3em</span_hljs-number>;</code></pre>
+<pre><code>  <span_hljs-attribute>font-size</span_hljs-attribute>: <span_hljs-number>2.5em</span_hljs-number>;</code></pre>
+<pre><code>  <span_hljs-attribute>border-top</span_hljs-attribute>:solid <span_hljs-number>4px</span_hljs-number> <span_hljs-number>#F08</span_hljs-number>;</code></pre>
+<pre><code>  <span_hljs-attribute>border-bottom</span_hljs-attribute>:solid <span_hljs-number>4px</span_hljs-number> <span_hljs-number>#F08</span_hljs-number>;</code></pre>
+<pre><code>}</code></pre>
+<pre><code></code></pre>
+<pre><code><span_hljs-selector-tag>div</span_hljs-selector-tag><span_hljs-selector-class>.hen</span_hljs-selector-class>{<span_hljs-attribute>background</span_hljs-attribute>: <span_hljs-number>#ff0</span_hljs-number>; <span_hljs-attribute>color</span_hljs-attribute>:<span_hljs-number>#D00</span_hljs-number>; <span_hljs-attribute>font-size</span_hljs-attribute>: <span_hljs-number>0.7em</span_hljs-number>;}</code></pre>
+<pre><code></code></pre>
+<pre><code><span_hljs-selector-tag>img</span_hljs-selector-tag> {</code></pre>
+<pre><code>  <span_hljs-attribute>display</span_hljs-attribute>:block;</code></pre>
+<pre><code>  <span_hljs-attribute>border</span_hljs-attribute>: solid <span_hljs-number>1px</span_hljs-number> <span_hljs-number>#444</span_hljs-number>;</code></pre>
+<pre><code>  <span_hljs-attribute>max-width</span_hljs-attribute>:<span_hljs-number>600px</span_hljs-number>;</code></pre>
+<pre><code>}</code></pre>
+<pre><code><span_hljs-selector-tag>blockquote</span_hljs-selector-tag>{</code></pre>
+<pre><code>  <span_hljs-attribute>font-weight</span_hljs-attribute>: bold;</code></pre>
+<pre><code>    <span_hljs-attribute>background</span_hljs-attribute>:<span_hljs-number>#ff0</span_hljs-number>;</code></pre>
+<pre><code>    <span_hljs-attribute>margin</span_hljs-attribute>: <span_hljs-number>1em</span_hljs-number> <span_hljs-number>0</span_hljs-number>;</code></pre>
+<pre><code>    <span_hljs-attribute>padding-left</span_hljs-attribute>: <span_hljs-number>1em</span_hljs-number>;</code></pre>
+<pre><code>}</code></pre>
+<pre><code><span_hljs-selector-tag>body</span_hljs-selector-tag> {</code></pre>
+<pre><code>    <span_hljs-attribute>font-family</span_hljs-attribute>:sans-serif;</code></pre>
+<pre><code>    <span_hljs-attribute>width</span_hljs-attribute>:<span_hljs-number>36em</span_hljs-number>;</code></pre>
+<pre><code>}</code></pre>
+<pre><code>……後略……</code></pre>
+<pre><code></code></pre>
+</codelist>
+</div>
+<div class="figure">
+<h6 id="-">フォルダ構成</h6>
+<table>
+<thead>
+<tr>
+<th>ファイル・フォルダ名</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cssjs</td>
+<td>プレビュー用のCSSとJavaScriptファイルを入れておくフォルダ（P.■■参照）。</td>
+</tr>
+<tr>
+<td>doc</td>
+<td>Markdown原稿を入れるフォルダだが、リネームしてもいいし、このフォルダ外に原稿を置いても問題ない。</td>
+</tr>
+<tr>
+<td>Gruntfile.js</td>
+<td>Gruntの設定ファイル。</td>
+</tr>
+<tr>
+<td>indesign-plugins</td>
+<td>InDesign用のプラグイン（P.■■参照）。インストール後は削除しても問題ない。</td>
+</tr>
+<tr>
+<td>kousei-sjis</td>
+<td>Just-Rightという校正ツールを使用するために、Shift JISに変換したHTMLファイルを保存しておくフォルダ。削除しても問題ない。</td>
+</tr>
+<tr>
+<td>mytemplate.html</td>
+<td>プレビュー用HTMLの元になるテンプレートファイル。CSSへのリンクなどを記述しておく（P.■■参照）。</td>
+</tr>
+<tr>
+<td>node_modules</td>
+<td>Gruntやプラグインがインストールされているフォルダ。</td>
+</tr>
+<tr>
+<td>README.html〜xml</td>
+<td>使用説明ファイル。削除しても問題ない。</td>
+</tr>
+<tr>
+<td>sample</td>
+<td>テスト用のファイル。削除しても問題ない。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</story>

@@ -72,7 +72,8 @@ var template = [
               mainWindow.loadURL('file://' + __dirname + '/index.html?openfile=' + encodeURIComponent(filenames[0]));
             }
         });
-      }}
+      }},
+      { label: 'export InDesignXML', click: function() { mainWindow.webContents.send('main-process-message', 'Export XML'); } }
     ]
   }, {
     label: 'Edit',
