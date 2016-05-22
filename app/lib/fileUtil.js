@@ -9,6 +9,8 @@ var marked = require('marked');
 var hljs = require('highlight.js');
 var _ = require('lodash');
 var nativeImage = require('electron').nativeImage;
+//var jsdom = require('jsdom').jsdom;
+var cheerio = require('cheerio');
 
 var fileUtil = {
   fetchReadmeList: function (baseDir, cb) {
@@ -214,96 +216,45 @@ var fileUtil = {
   },
   // InDesign向けのXMLファイルパスを書き出す
   exportInDesignXML: function(htmlfile){    
-console.log('exportXML');
+    console.log('exportXML');
     var l = htmlfile.lastIndexOf(path);
     var workfolder = htmlfile.substring(0, l);    
     // ファイルを読み込み
     try{
       var src = fs.readFileSync(htmlfile, 'utf-8');
+      var $ = cheerio.load(src);
     } catch (err){
       dialog.showErrorBox('File Open Error', err.message);
       throw new Error('cannot open file.');
     }
+    // body要素を取得
+    var body = $('body');
+    //console.log(body);
+    
+    // XMLを構築
     var out = '<?xml version="1.0" encoding="UTF-8"?>';
         out += '<story xmlns:aid5="http://ns.adobe.com/AdobeInDesign/5.0/" '
-            + 'xmlns:aid="http://ns.adobe.com/AdobeInDesign/4.0/">';
-    var lines = src.split('\n');
-    var olmode = false;
-    //ヘッダーをスキップ
-    for(var i=0; i<lines.length; i++){
-      if(lines[i].indexOf('<body') >= 0) {
-        break;
-      }
-    }
-    console.log(htmlfile);
-    console.log(lines.length);
-    var codemode = false;
-    // 書き出しループ
-    for(; i<lines.length; i++){
-      var line = lines[i]; 
-      console.log(line);
-      if(codemode == true){
-        //コード専用の処理
-        //コードが終わったかチェック
-        if(line.indexOf('</code></pre>')>=0){
-          codemode = false;
-          //</code></pre>より前は処理したい
-          out += parseCode(line.replace(/(.*)<\/code><\/pre>/, '$1')) + '\n';
-          out += '</codelist>' + '\n';
-          continue;
-        }
-        out += parseCode(line) + '\n';
-      } else {
-        //コード以外の処理
-        //コードか否かをチェック
-        if(line.indexOf('<pre><code')>=0){
-          codemode = true;
-          //out += '<codelist data-type="'+line.replace(/.*class="lang-([a-z]*)".*/, '$1')+'">\n';
-          out += '<codelist>\n';
-          //pre codeを抜いた部分だけはコードとして処理したい
-          lines[i] = line.replace(/<pre><code[^>]*>(.*)/, '$1');
-          i--;
-          continue;
-        }
-        //html終了タグが来たら終了
-        if(line.indexOf('</html>')>=0) break;
-        //ulかolか
-        if(line.indexOf('<ul>')>=0) olmode=false;
-        if(line.indexOf('<ol>')>=0) olmode=true;
-        //1ライン出力
-        var htmlline = parseHTML(line.trim(), olmode);
-        //行末がタグなら改行を入れる。タグでなければ詰める
-        if(htmlline.charAt(htmlline.length-1) == '>') out += htmlline + '\n';
-        else out += htmlline;
-      }
-    }
-    out += '</story>';
+            + 'xmlns:aid="http://ns.adobe.com/AdobeInDesign/4.0/">'
+            + '</story>';
+    var $x = cheerio.load(out, {
+      normalizeWhitespace: true,
+      xmlMode: true
+    });
+    var xstory = $x('story');
+    console.log($x.xml());
  
     //書き出しファイル名
     var xmlfilepath = htmlfile.replace('.html', '.xml');
     console.log(xmlfilepath);
-    try {
-      fs.writeFileSync(xmlfilepath, out);    
-    } catch (err){
-      dialog.showErrorBox('File Write Error', err.message);
-      throw new Error('cannot write file.');
-    }
+    // try {
+    //   fs.writeFileSync(xmlfilepath, out);    
+    // } catch (err){
+    //   dialog.showErrorBox('File Write Error', err.message);
+    //   throw new Error('cannot write file.');
+    // }
 
     return;
     
-    function parseCode(src, olmode){
-      console.log('parseCode');
-      src = src.replace(/<span class="([^"]*)">([^<]*)<\/span>/g, 
-              '<span_$1>$2</span_$1>');
-      //決め打ち処理後で対策を検討
-      src = src.replace(/<span class="[^"]*">/g, '');
-      src = src.replace(/<\/span>/g, '');
-      return '<pre><code>' + src + '</code></pre>';
-    }
-    function parseHTML(src, olmode){
-      return src;
-    }
-
 
   }
 

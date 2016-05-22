@@ -14,10 +14,12 @@
     "url": "https://github.com/lwohtsu/mdpreview.git"
   },
   "dependencies": {
+    "cheerio": "^0.20.0",
     "chokidar": "^1.4.3",
     "glob": "^7.0.3",
     "grunt-markdown": "^0.7.0",
     "highlight.js": "^9.3.0",
+    "jsdom": "^9.1.0",
     "lodash": "^4.11.2",
     "marked": "^0.3.5",
     "node-static": "^0.7.7"
