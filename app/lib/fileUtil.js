@@ -272,6 +272,11 @@ var fileUtil = {
         if('h1h2h3h4h5h6p'.indexOf(htmldom.tagName)>=0){
           classname = $(htmldom.parentNode).attr('class')
         }
+        // li要素の場合、親がul、olの場合で書き出しタグを変える（ul_li、ol_liになる）
+        if(name == 'li'){
+          var parent = htmldom.parentNode;
+          name = parent.tagName + '_' + name;
+        }
         // HTMLのタグ名とクラス名を連結したものをXMLのタグ名とする
         if(classname) name = name + '_' + classname;
         $x(xmldom).append('<' + name + '></' + name + '>' );
