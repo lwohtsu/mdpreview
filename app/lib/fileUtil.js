@@ -247,8 +247,11 @@ var fileUtil = {
     //書き出しファイル名
     var xmlfilepath = htmlfile.replace('.html', '.xml');
     console.log(xmlfilepath);
+    var xmltext = $x.xml();
+    // img要素が単独要素にならないので、置換で強引に直す。
+    xmltext = xmltext.replace(/>[^<]*<\/img>/g, '/>\n');
     try {
-      fs.writeFileSync(xmlfilepath, $x.xml());    
+      fs.writeFileSync(xmlfilepath, xmltext);    
     } catch (err){
       dialog.showErrorBox('File Write Error', err.message);
       throw new Error('cannot write file.');
@@ -261,24 +264,53 @@ var fileUtil = {
         // 要素の移植
         var name = htmldom.tagName;
         var classname = $(htmldom).attr('class');
+        // svg要素の場合はスキップ
+        // if(htmldom.tagName == 'svg') return;
+        // svgのimage要素の場合はimg要素にタグ名を変更
+        if(name == 'image') name = 'img';
+        // 見出しまたは段落要素であれば、親要素のクラス名をタグ名に加える
+        if('h1h2h3h4h5h6p'.indexOf(htmldom.tagName)>=0){
+          classname = $(htmldom.parentNode).attr('class')
+        }
+        // HTMLのタグ名とクラス名を連結したものをXMLのタグ名とする
         if(classname) name = name + '_' + classname;
-        // console.log('tag: ' + name);
-        // console.log(classname);
         $x(xmldom).append('<' + name + '></' + name + '>' );
+        // 追加したノードを取得
         var nodes = $x(xmldom).children(name);
-        //console.log(nodes[nodes.length-1]);        
+        var newnode = nodes[nodes.length-1];
+        // img要素の場合はsrc属性をhref属性として移植
+        if(htmldom.tagName == 'img'){
+          $x(newnode).attr('href', 'file://'+ $(htmldom).attr('src'));
+        }
+        // svgのimage要素のhref属性の場合はxlink:hrefをhref属性として移植
+        if(htmldom.tagName == 'image'){
+          $x(newnode).attr('href', 'file://'+ $(htmldom).attr('xlink:href'));
+          // 変形指定を分割して個別の属性にする
+          var tfvalue = $(htmldom).attr('transform');
+          tfvalue =  tfvalue.replace(/translate\(([^,]*),([^\)]*)\) scale\(([^\)]+)\)/
+            , '$1 $2 $3');
+          var params = tfvalue.split(' ');
+          $x(newnode).attr('translate-x', params[0]);
+          $x(newnode).attr('translate-y', params[1]);
+          $x(newnode).attr('scale', params[2]);
+          var parent = htmldom.parentNode;
+          // 親がsvg要素の場合はwidthとheightを移植
+          if(parent.tagName == 'svg'){
+            $x(newnode).attr('width', $(parent).attr('width'));
+            $x(newnode).attr('height', $(parent).attr('height'));            
+          }
+        }
         // 子の取得
         var contents = $(htmldom).contents();
         if(contents.length > 0){
           for(var i=0; i<contents.length; i++){
-            htmltoxml(contents.get(i), nodes[nodes.length-1]);
+            htmltoxml(contents.get(i), newnode);
           }
         }
       } else if(htmldom.type == 'text'){
         // テキストノード
-        //var data = htmldom.data;
-        // console.log('data: ' + data);
-        //$x(xmldom).append(data);
+        // テキストすべて16進数になってしまうが問題はないらしい
+        $x(xmldom).append(htmldom);
       }
     }
 
