@@ -242,19 +242,45 @@ var fileUtil = {
     });
     var xstory = $x('story');
     console.log($x.xml());
+    htmltoxml(body.get(0), xstory.get(0));
  
     //書き出しファイル名
     var xmlfilepath = htmlfile.replace('.html', '.xml');
     console.log(xmlfilepath);
-    // try {
-    //   fs.writeFileSync(xmlfilepath, out);    
-    // } catch (err){
-    //   dialog.showErrorBox('File Write Error', err.message);
-    //   throw new Error('cannot write file.');
-    // }
+    try {
+      fs.writeFileSync(xmlfilepath, $x.xml());    
+    } catch (err){
+      dialog.showErrorBox('File Write Error', err.message);
+      throw new Error('cannot write file.');
+    }
 
     return;
     
+    function htmltoxml(htmldom, xmldom){
+      if(htmldom.type == 'tag'){
+        // 要素の移植
+        var name = htmldom.tagName;
+        var classname = $(htmldom).attr('class');
+        if(classname) name = name + '_' + classname;
+        // console.log('tag: ' + name);
+        // console.log(classname);
+        $x(xmldom).append('<' + name + '></' + name + '>' );
+        var nodes = $x(xmldom).children(name);
+        //console.log(nodes[nodes.length-1]);        
+        // 子の取得
+        var contents = $(htmldom).contents();
+        if(contents.length > 0){
+          for(var i=0; i<contents.length; i++){
+            htmltoxml(contents.get(i), nodes[nodes.length-1]);
+          }
+        }
+      } else if(htmldom.type == 'text'){
+        // テキストノード
+        //var data = htmldom.data;
+        // console.log('data: ' + data);
+        //$x(xmldom).append(data);
+      }
+    }
 
   }
 

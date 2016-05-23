@@ -111,9 +111,7 @@ ipc.on('main-process-message', function(event, arg) {
         clipboard.writeText('http://localhost:8080/viewer/vivliostyle-viewer.html#x=../' + htmlfilepath.substr(l+1));    
         console.log('http://localhost:8080/viewer/vivliostyle-viewer.html#x=../' + htmlfilepath.substr(l+1));     
     } else if(arg== 'Export XML'){
-        console.log('call');
         if(htmlfilepath) fileUtil.exportInDesignXML(htmlfilepath);
-        console.log('finish');
     }
 
 });
