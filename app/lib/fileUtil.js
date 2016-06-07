@@ -249,7 +249,15 @@ var fileUtil = {
     console.log(xmlfilepath);
     var xmltext = $x.xml();
     // img要素が単独要素にならないので、置換で強引に直す。
-    xmltext = xmltext.replace(/>[^<]*<\/img>/g, '/>\n');
+    xmltext = xmltext.replace(/>[^<]*<\/img>/g, '/>');
+    // 画像タグの後の改行を詰める
+    xmltext = xmltext.replace(/<div_figure>\n/g, '<div_figure>');
+    xmltext = xmltext.replace(/<svg>\n/g, '<svg>');
+    xmltext = xmltext.replace(/\n<\/svg>\n/g, '</svg>');
+    xmltext = xmltext.replace(/<\/div_figcaption>\n/g, '</div_figcaption>');
+    xmltext = xmltext.replace(/\n<div_figcaption>/g, '<div_figcaption>');
+    // br要素をただの改行に
+    xmltext = xmltext.replace(/<br\/>/g, '\n');
     try {
       fs.writeFileSync(xmlfilepath, xmltext);    
     } catch (err){
