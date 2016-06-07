@@ -1,6 +1,6 @@
 {
   "name": "mdpreview",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "description": "Convert from Markdown to HTML with CSS",
   "main": "main.js",
   "scripts": {
