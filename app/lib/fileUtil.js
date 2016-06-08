@@ -256,6 +256,11 @@ var fileUtil = {
     xmltext = xmltext.replace(/\n<\/svg>\n/g, '</svg>');
     xmltext = xmltext.replace(/<\/div_figcaption>\n/g, '</div_figcaption>');
     xmltext = xmltext.replace(/\n<div_figcaption>/g, '<div_figcaption>');
+
+    xmltext = xmltext.replace(/\n<div_kakomilist>/g, '<div_kakomilist>');
+    xmltext = xmltext.replace(/<div_kakomilist>\n/g, '<div_kakomilist>');
+    xmltext = xmltext.replace(/<\/div_kakomilist>\n/g, '</div_kakomilist>');
+    xmltext = xmltext.replace(/\n<div_kakomilist>/g, '<div_kakomilist>');
     // br要素をただの改行に
     xmltext = xmltext.replace(/<br\/>/g, '\n');
     try {
