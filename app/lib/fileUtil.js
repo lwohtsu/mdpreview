@@ -270,6 +270,8 @@ var fileUtil = {
     xmltext = xmltext.replace(/<\/tbody>\n/g, '');
     xmltext = xmltext.replace(/<th>/g, '<td>');
     xmltext = xmltext.replace(/<\/th>/g, '</td>');
+
+    // ファイル書き出し
     try {
       fs.writeFileSync(xmlfilepath, xmltext);    
     } catch (err){
