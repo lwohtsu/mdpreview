@@ -133,7 +133,15 @@ var fileUtil = {
       dialog.showErrorBox('RepList Open Error', err.message);
       console.log('no replist');
     }
-    
+    //連番処理〓文字を数値に置換
+    //〓文字の数で連番の種類を分けられる
+    var counter = 1;
+    html = html.replace(/〓〓〓/g,function(){return counter++;});
+    var counter = 1;
+    html = html.replace(/〓〓/g,function(){return counter++;});
+    var counter = 1;
+    html = html.replace(/〓/g,function(){return counter++;});
+
     // lodashを使ってテンプレートにはめ込んで書き出す
     var compiled = _.template(template);
     try {
