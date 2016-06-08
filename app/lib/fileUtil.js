@@ -263,6 +263,13 @@ var fileUtil = {
     xmltext = xmltext.replace(/\n<div_kakomilist>/g, '<div_kakomilist>');
     // br要素をただの改行に
     xmltext = xmltext.replace(/<br\/>/g, '\n');
+    // theadとtbodyを取り除き、thはtdに
+    xmltext = xmltext.replace(/<thead>\n/g, '');
+    xmltext = xmltext.replace(/<tbody>\n/g, '');
+    xmltext = xmltext.replace(/<\/thead>\n/g, '');
+    xmltext = xmltext.replace(/<\/tbody>\n/g, '');
+    xmltext = xmltext.replace(/<th>/g, '<td>');
+    xmltext = xmltext.replace(/<\/th>/g, '</td>');
     try {
       fs.writeFileSync(xmlfilepath, xmltext);    
     } catch (err){
@@ -277,8 +284,6 @@ var fileUtil = {
         // 要素の移植
         var name = htmldom.tagName;
         var classname = $(htmldom).attr('class');
-        // svg要素の場合はスキップ
-        // if(htmldom.tagName == 'svg') return;
         // svgのimage要素の場合はimg要素にタグ名を変更
         if(name == 'image') name = 'img';
         // 見出しまたは段落要素であれば、親要素のクラス名をタグ名に加える
