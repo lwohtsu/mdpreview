@@ -273,6 +273,8 @@ var fileUtil = {
     xmltext = xmltext.replace(/<div_kakomilist>\n/g, '<div_kakomilist>');
     xmltext = xmltext.replace(/<\/div_kakomilist>\n/g, '</div_kakomilist>');
     xmltext = xmltext.replace(/\n<div_kakomilist>/g, '<div_kakomilist>');
+    // preの後の改行を詰める
+    xmltext = xmltext.replace(/<\/pre>\n/g, '</pre>');
     // br要素をただの改行に
     xmltext = xmltext.replace(/<br\/>/g, '\n');
     // theadとtbodyを取り除き、thはtdに
