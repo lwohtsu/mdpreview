@@ -1,6 +1,6 @@
 {
   "name": "mdpreview",
-  "version": "0.9.8",
+  "version": "0.9.9",
   "description": "Convert from Markdown to HTML with CSS",
   "main": "main.js",
   "scripts": {
@@ -23,5 +23,8 @@
     "lodash": "^4.11.2",
     "marked": "^0.3.5",
     "node-static": "^0.7.7"
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^1.2.3"
   }
 }

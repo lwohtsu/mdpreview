@@ -3,7 +3,7 @@
 
 'use strict';
 
-var remote = require('remote');
+var remote = require('electron').remote;
 var fileUtil = remote.require('./lib/fileUtil');
 
 // URLからクエリテキストのopenfileを取得
