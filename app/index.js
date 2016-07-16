@@ -117,57 +117,21 @@ ipc.on('main-process-message', function(event, arg) {
 });
 
 // angularの使用準備
-var ngModule = angular.module('mdpreview', ['ui.bootstrap']);
+// var ngModule = angular.module('mdpreview', ['ui.bootstrap']);
 
-ngModule.controller('MainController', function($scope, $uibModal, $log){
-    var main = this;
+// ngModule.controller('MainController', function($scope, $uibModal, $log){
+//     var main = this;
     
-    main.openfile = openfile; 
-    // ファイルを取得
-    if(main.openfile){
-        main.fileText = fileUtil.getAsText(main.openfile);
-        main.replacelist = fileUtil.getAsReplaceList(main.openfile);
-    }
-    main.htmlfilepath = htmlfilepath;
-    if(main.htmlfilepath){
-        main.fileHTML = fileUtil.getAsHTML(htmlfilepath);        
-    }
+//     main.openfile = openfile; 
+//     // ファイルを取得
+//     if(main.openfile){
+//         main.fileText = fileUtil.getAsText(main.openfile);
+//         main.replacelist = fileUtil.getAsReplaceList(main.openfile);
+//     }
+//     main.htmlfilepath = htmlfilepath;
+//     if(main.htmlfilepath){
+//         main.fileHTML = fileUtil.getAsHTML(htmlfilepath);        
+//     }
     
-    // SVG変換ツールはオミット
-    // SVG変換ツール
-    // main.svgConvert = function(){
-    //     var maxwidth = document.getElementById('maxwidth').value;
-    //     var scale = document.getElementById('scale').value;
-    //     var density = document.getElementById('density').value;
-    //     fileUtil.svgConvert(main.openfile, maxwidth, scale, density);
-    // };
-    // main.svgUpdate = function(){
-    //     var maxwidth = document.getElementById('maxwidth').value;
-    //     var scale = document.getElementById('scale').value;
-    //     var density = document.getElementById('density').value;
-    //     fileUtil.svgUpdate(main.openfile, maxwidth, scale, density);
-    // };
 
-});
-
-// <div md-preview="main.fileText"></div>と書くとそこに表示されるらしい
-ngModule.directive('htmlView', function () {
-    return function ($scope, $elem, $attrs) {
-        $scope.$watch($attrs.htmlView, function(source) {
-            //マークダウンテキストをpreで囲んで表示 
-            $elem.html('<pre id="source-html"><code class="xml hljs"></code></pre>')
-                .find("code").html(source);
-        });
-    };
-});
-
-// <div replist-view="main.replacelist"></div>と書くとそこに表示されるらしい
-ngModule.directive('replistView', function () {
-    return function ($scope, $elem, $attrs) {
-        $scope.$watch($attrs.replistView, function(source) {
-            //マークダウンテキストをpreで囲んで表示 
-            $elem.html('<pre id="replist-html"><code class="javascript hljs"></code></pre>')
-                .find("code").html(source);
-        });
-    };
-});
+// });

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="mdpreview">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Electron Markdown Preview and Convert</title>
@@ -8,61 +8,26 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="tomorrow-night-blue.css">
 </head>
-<body ng-controller="MainController as main">
+<body>
 
-<div ng-if="!main.openfile">
-    <h1>MarkdownをOpenしてください</h1>
-</div>
-
-<div ng-if="main.openfile">
-    <!--<div>{{main.openfile}}</div>-->
-    <!--タブ-->
-    <uib-tabset active="active">
-        <!--生のHTMLプレビュー-->
-        <uib-tab index="0" heading="HTMLPreview">
-            <iframe id="html-preview" class="row-html" src=""></iframe>
-        </uib-tab>
-        <!--置換リスト-->
-        <uib-tab index="1" heading="PostReplaceList">
-            <div ng-if="main.htmlfilepath">
-                <div replist-view="main.replacelist"></div>
-            </div>
-        </uib-tab>
-        <!--Markdownのプレビュー-->
-        <uib-tab index="2" heading="HTML">
-            <div ng-if="main.htmlfilepath">
-                <div html-view="main.fileHTML"></div>
-            </div>
-        </uib-tab>
-        <!--Vivliostyleを使ったプレビュー-->
-        <uib-tab index="3" heading="VivliostylePreview">
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#tab1" data-toggle="tab">HTMLプレビュー（高速）</a></li>
+  <li><a href="#tab2" data-toggle="tab">Vivliostyleプレビュー</a></li>
+</ul>
+ 
+<div class="tab-content">
+    <!--生のHTMLプレビュー-->
+    <div class="tab-pane active" id="tab1">
+        <iframe id="html-preview" class="row-html" src=""></iframe>
+    </div>
+    <!--Vivliostyleを使ったプレビュー-->
+    <div class="tab-pane" id="tab2">
             <iframe id="vs-preview" class="vs-html" src=""></iframe>
-        </uib-tab>
-        <!--ツール-->
-        <!--SVG変換ツールはオミット-->
-        <!--<uib-tab index="4" heading="Tools">
-            <div ng-if="main.htmlfilepath">
-                <h3>画像のSVG変換ツール</h3>
-                <p>このツールは元原稿のMarkdownファイルを書き換えます。
-                   不安な場合は元原稿のバックアップを取ってください。</p>
-                <dl>
-                    <dt>最大幅（mm）</dt>
-                    <dd><input id="maxwidth" type="number" value="120"></dd>
-                    <dt>倍率（scale=1.0）</dt>
-                    <dd><input id="scale" type="number" value="0.4"></dd>
-                    <dt>解像度（dpi）</dt>
-                    <dd><input id="density" type="number" value="72"></dd>
-                </dl>
-                <button ng-click="main.svgConvert()">Convert From MDImage</button>
-                <button ng-click="main.svgUpdate()">Update SVGImage</button>
-            </div>
-        </uib-tab>-->
-    </uib-tabset>
+    </div>
 </div>
-
-
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+       
+<script src="bower_components/jquery/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="index.js"></script>
 
 </body>
