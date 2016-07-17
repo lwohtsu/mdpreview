@@ -49,8 +49,6 @@ if(openfile){
             fileUtil.convertMarkdown(openfile);
             document.getElementById('html-preview').contentDocument
                 .location.reload(true);
-            document.getElementById('source-html').innerHTML = 
-                '<code class="xml hljs">' + fileUtil.getAsHTML(htmlfilepath)  + '</code>';
             document.getElementById('vs-preview').contentDocument
                 .location.reload(true);
         });        
