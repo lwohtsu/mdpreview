@@ -1,6 +1,6 @@
 {
   "name": "mdpreview",
-  "version": "1.01",
+  "version": "1.0.1",
   "description": "Convert from Markdown to HTML with CSS",
   "main": "main.js",
   "scripts": {
@@ -16,6 +16,7 @@
   "dependencies": {
     "cheerio": "^0.20.0",
     "chokidar": "^1.4.3",
+    "electron-prebuilt": "^1.2.7",
     "glob": "^7.0.3",
     "grunt-markdown": "^0.7.0",
     "highlight.js": "^9.3.0",
