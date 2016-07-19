@@ -47,10 +47,15 @@ if(openfile){
             if(htmlfilepath === '') return;
             // console.log('change: ' + path);
             fileUtil.convertMarkdown(openfile);
-            document.getElementById('html-preview').contentDocument
-                .location.reload(true);
-            document.getElementById('vs-preview').contentDocument
-                .location.reload(true);
+            var tabid = $('.nav-tabs .active a').attr('href');
+            // alert('tabid: ' + tabid);
+            if(tabid == '#tab1'){
+                document.getElementById('html-preview').contentDocument
+                    .location.reload(true);
+            } else {
+                document.getElementById('vs-preview').contentDocument
+                    .location.reload(true);
+            }
         });        
 
         // サーバを起動
