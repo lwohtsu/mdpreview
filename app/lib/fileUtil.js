@@ -313,7 +313,7 @@ var fileUtil = {
           name = parent.tagName + '_' + name;
         }
         // HTMLのタグ名とクラス名を連結したものをXMLのタグ名とする
-        if(classname) name = name + '_' + classname;
+        if(classname) name = name + '_' + classname.replace(/ /g,"_");
         $x(xmldom).append('<' + name + '></' + name + '>' );
         // 追加したノードを取得
         var nodes = $x(xmldom).children(name);
