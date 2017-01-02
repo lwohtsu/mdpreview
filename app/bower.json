@@ -16,7 +16,8 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "^3.3.6",
-    "jquery": "1.9.1"
+    "bootstrap": "^3.3.7",
+    "jquery": "1.9.1",
+    "materialize": "^0.97.8"
   }
 }
