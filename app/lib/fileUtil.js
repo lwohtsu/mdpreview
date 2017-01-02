@@ -80,10 +80,22 @@ var fileUtil = {
       dialog.showErrorBox('File Open Error', err.message);
       throw new Error('_template.html not found.');
     }
-  
+    // _postReplaceList.jsonがあれば読み込み
+    try{
+      var replisttext = fs.readFileSync( 
+        path.join(workfolder, '_postReplaceList.json'), 'utf-8');      
+      var replist = JSON.parse(replisttext);
+    } catch(err){
+      dialog.showErrorBox('RepList Open Error', err.message);
+      console.log('no replist');
+    }
+
+    // markedのrenderをオーバーライド
+    var renderer2 = new marked.Renderer();
+
     //markedのオプション設定
     marked.setOptions({
-      renderer: new marked.Renderer(),
+      renderer: renderer2,
       gfm: true,        //GitHub Flavored Markdown
       tables: true,     //表組み対応
       breaks: false,    //GFMページブレーク対応
@@ -122,17 +134,12 @@ var fileUtil = {
     html = html.replace(/<\/pre>/g, '</pre>\n');
 
     // _postReplaceList.jsonがあれば後置換を実行
-    try{
-      var replisttext = fs.readFileSync( 
-        path.join(workfolder, '_postReplaceList.json'), 'utf-8');      
-      var replist = JSON.parse(replisttext);
+    if(replist){
       for(var i=0; i<replist.length; i++){
         html = html.replace(new RegExp(replist[i].f, 'g'), replist[i].r);
       }
-    } catch(err){
-      dialog.showErrorBox('RepList Open Error', err.message);
-      console.log('no replist');
     }
+
     //連番処理〓文字を数値に置換
     //〓文字の数で連番の種類を分けられる
     var counter = 1;
