@@ -14,9 +14,11 @@
     "url": "https://github.com/lwohtsu/mdpreview.git"
   },
   "dependencies": {
+    "bower": "^1.8.0",
     "cheerio": "^0.20.0",
     "chokidar": "^1.4.3",
-    "electron-prebuilt": "^1.2.7",
+    "electron": "^1.4.13",
+    "electron-packager": "^8.4.0",
     "glob": "^7.0.3",
     "grunt-markdown": "^0.7.0",
     "highlight.js": "^9.3.0",

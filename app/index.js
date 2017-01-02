@@ -118,23 +118,3 @@ ipc.on('main-process-message', function(event, arg) {
     }
 
 });
-
-// angularの使用準備
-// var ngModule = angular.module('mdpreview', ['ui.bootstrap']);
-
-// ngModule.controller('MainController', function($scope, $uibModal, $log){
-//     var main = this;
-    
-//     main.openfile = openfile; 
-//     // ファイルを取得
-//     if(main.openfile){
-//         main.fileText = fileUtil.getAsText(main.openfile);
-//         main.replacelist = fileUtil.getAsReplaceList(main.openfile);
-//     }
-//     main.htmlfilepath = htmlfilepath;
-//     if(main.htmlfilepath){
-//         main.fileHTML = fileUtil.getAsHTML(htmlfilepath);        
-//     }
-    
-
-// });
