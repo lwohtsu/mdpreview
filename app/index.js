@@ -43,9 +43,12 @@ if(openfile){
         // iframeの高さを目一杯にしたい
         // TODO: 本当はタブ幅の分ちゃんと削りたいけどよくわからないので-100px固定
         var dh = window.innerHeight ;
-        iframe.style.height = (dh - 50) + 'px';
+        var tabh = $('nav-tabs').height();
+        iframe.style.height = (dh - tabh) + 'px';
         // 簡易ページプレビュー用
-        exiframe.style.height = (dh - 50) + 'px';
+        $(exiframe).height(dh- tabh);
+
+        $('title').text(openfile);
                 
         // 監視の準備
         watcher = chokidar.watch(openfile);
@@ -65,8 +68,10 @@ if(openfile){
             } else {
                 document.getElementById('expage-preview').contentDocument
                     .location.reload(true);                
+                // document.getElementById('expage-preview').src = 'file://' + htmlfilepath 
+                //     + '?' + Math.floor(Math.round()*100000);
                 // ページング実行
-                exPaging(exiframe);
+                // exPaging(exiframe);
             }
         });        
 
@@ -94,15 +99,16 @@ if(openfile){
 window.onresize = function(){
     var iframe =  document.getElementById('html-preview');
     var dh = window.innerHeight ;
+    var tabh = $('nav-tabs').height();
     // TODO: 本当はタブ幅の分ちゃんと削りたいけどよくわからないので-100px固定
     iframe.style.height = (dh - 50) + 'px';    
     var vsiframe =  document.getElementById('vs-preview');
     vsiframe.style.height = (dh - 50) + 'px';   
-    var exiframe =  document.getElementById('expage-preview');
-    exiframe.style.height = (dh - 50) + 'px';   
+    $(exiframe).height(dh- tabh);
     // TODO: リサイズ時のリロードを止める　できれば警告を表示したい
     // vsiframe.contentDocument.location.reload(true);
 }
+
 
 // 非同期でメインプロセスからのメッセージを受信する
 var g_zoomrate = 1.0;
