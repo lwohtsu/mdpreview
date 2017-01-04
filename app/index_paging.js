@@ -1,7 +1,6 @@
 /*簡易ページプレビュー用の処理*/
 // スクロール監視
 var exif_x = 0, exif_y = 0;
-var isnopagebreak = true;
 
 // ページング処理
 function exPaging(iframe){
@@ -69,7 +68,8 @@ function exPaging(iframe){
             var counter = 200;    //動作停止用（最大200ページでストップ）
 
             // 改ページが見つからなくなるまでループ
-            var timer2 = setTimeout(function pagebreakloop(){
+            var isnopagebreak = true;
+            do{
                 lastpage.css({
                     'margin-right': '10mm',
                     'padding': '4mm',
@@ -77,6 +77,9 @@ function exPaging(iframe){
                     'backgroundColor': bgcolor,
                     'position': 'relative'
                 })
+                if(bgcolor==='rgba(0, 0, 0, 0)'){
+                    lastpage.css('backgroundColor', '#fff');
+                }
                 // 最後のページの全子要素を取得
                 var cnts = lastpage.children();
                 // console.log(lastpage);
@@ -88,7 +91,7 @@ function exPaging(iframe){
                     var pbb = $(this).css('page-break-before');
                     var pba = $(this).css('page-break-after');
                     var ba = $(this).css('break-after');
-                    console.log(pbb + pba + ba);
+                    // console.log(pbb + pba + ba);
 
                     // 「前で改ページ」が見つかった
                     if( pbb === 'left' || pbb === 'always' || pbb === 'right'){
@@ -101,7 +104,7 @@ function exPaging(iframe){
                         // newpageをlastpageの後に移動
                         lastpage.after(newpage);
                         lastpage = newpage;
-                        console.log('---page-break-before');
+                        // console.log('---page-break-before');
                         isnopagebreak = false;
                         return false;
                     }
@@ -113,57 +116,48 @@ function exPaging(iframe){
                         // newpageをlastpageの後に移動
                         lastpage.after(newpage);
                         lastpage = newpage;
-                        console.log('***page-break-after');
+                        // console.log('***page-break-after');
                         isnopagebreak = false;
                         return false;
                     }
 
                 });
-
-                // 改ページ要素がなければタイマーループ終了
                 counter--;
-                if(isnopagebreak === true || counter < 0) {
-                    // タイマーループ終了
-                    clearTimeout(timer2);
+                if(counter<0) break;
+            }while(!isnopagebreak);
+            // console.log(bgcolor);
 
-                    // ノンブル設定
-                    console.log('######ノンブル設定');
-                    cbody.find('.pagenumber').remove();
-                    cpages.find('.sngpage-container').append('<div class="pagenumber" />');
-                    cpages.find('.pagenumber').each(function(index){
-                        $(this).text(index+1); 
-                        $(this).css({
-                            'position': 'absolute',
-                            'top': '10px',
-                            'right': '10px',
-                            'font-size': '20px',
-                            'color': '#bbb'
-                        });
-                    });
-                    cpages.find('.sngpage-container').each(function(index){
-                        $(this).attr('id', 'exipage'+index);
-                    });
-                    // スクロール位置復帰
-                    cpages.scrollLeft(exif_x);
-                    cpages.scrollTop(exif_y);
-                    console.log('スクロール復帰' + exif_x + ':' + exif_y);
-                    // スクロール監視
-                    console.log('スクロール監視イベント設定');
-                    cpages.scroll(function () {
-                        // console.log('####################scroll');
-                        exif_x = cpages.scrollLeft();
-                        exif_y = cpages.scrollTop();
-                        // console.log(exif_x, exif_y);
-                    });
-                    console.log(bgcolor);
-                } else {
-                    // タイマーループ再開
-                    clearTimeout(timer2);
-                    timer2 = setTimeout(pagebreakloop, 1);
-                }
+            // ノンブル設定
+            console.log('######ノンブル設定');
+            cbody.find('.pagenumber').remove();
+            cpages.find('.sngpage-container').append('<div class="pagenumber" />');
+            cpages.find('.pagenumber').each(function(index){
+                $(this).text(index+1); 
+                $(this).css({
+                    'position': 'absolute',
+                    'top': '10px',
+                    'right': '10px',
+                    'font-size': '20px',
+                    'color': '#bbb'
+                });
+            });
+            cpages.find('.sngpage-container').each(function(index){
+                $(this).attr('id', 'exipage'+index);
+            });
+            // スクロール位置復帰
+            cpages.scrollLeft(exif_x);
+            cpages.scrollTop(exif_y);
+            // console.log('スクロール復帰' + exif_x + ':' + exif_y);
+            // スクロール監視
+            console.log('スクロール監視イベント設定');
+            cpages.scroll(function () {
+                // console.log('####################scroll');
+                exif_x = cpages.scrollLeft();
+                exif_y = cpages.scrollTop();
+                // console.log(exif_x, exif_y);
+            });
 
-            },1); //setTimeout timer2
-        }, 200); //setTimeout timer1
+        }, 100); //setTimeout timer1
 
     }); //cdom.load
 
@@ -176,7 +170,7 @@ function divideElement(elem){
     console.log('....inside');
     
     magos.each(function(index){
-        console.log('....elem' + index + ' ' + $(this).attr('class') + ' ' + $(this).text().substr(0, 10));
+        // console.log('....elem' + index + ' ' + $(this).attr('class') + ' ' + $(this).text().substr(0, 10));
         var pbb = $(this).css('page-break-before');
         var pba = $(this).css('page-break-after');
         // 「前で改ページ」が見つかった
@@ -195,7 +189,7 @@ function divideElement(elem){
             newelem.attr('style', 'page-break-before:' + pbb);
             newelem.css('counter-reset', 'none');
             elem = newelem;
-            console.log('..---!divide inside! page-break-before');
+            // console.log('..---!divide inside! page-break-before');
             return true;
         }
         // 「後で改ページ」が見つかった
@@ -211,26 +205,9 @@ function divideElement(elem){
             newelem.attr('style', 'page-break-before:' + pba);
             newelem.css('counter-reset', 'none');
             elem = newelem;
-            console.log('..---!divide inside! page-break-after');
+            // console.log('..---!divide inside! page-break-after');
             return true;
         }
-        // // ページ末になるなら改ページが見つかった
-        // if(pba === 'avoid'){
-        //     // 先頭要素はスキップ（すでに先頭にいるなら直前で改ページする必要はない）
-        //     if(index==0) return true;
-        //     // elemの複製を作成（ただし子は持ってこない）
-        //     var newelem = elem.clone();
-        //     newelem.empty();
-        //     // thisの1つ前の要素を基準にしてその次から最後までをnewelemに移動
-        //     var prev = $(this).prev();
-        //     newelem.append(prev.nextAll());
-        //     // newelemをelemの後に移動
-        //     elem.after(newelem);
-        //     newelem.css('page-break-after', avoid);
-        //     elem = newelem;
-        //     console.log('..---!divide inside! page-break-after *avoid');
-        //     return true;            
-        // }
     });
 }
 
