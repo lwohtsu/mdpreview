@@ -185,10 +185,10 @@ var fileUtil = {
         var s = $1.indexOf('?svgimg=');
         if(s<0) return str;
         var imgpath = path.join(workfolder, $1.substring(0, s));
-        console.log(imgpath);
+        // console.log(imgpath);
         var img = nativeImage.createFromPath(imgpath);
         // 読み込めない場合は変換せずにそのまま返す
-        console.log(img.isEmpty());
+        // console.log(img.isEmpty());
         if(img.isEmpty()) return str;
         // パラメータを取得
         var scale = 1;

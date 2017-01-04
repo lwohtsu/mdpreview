@@ -52,12 +52,12 @@ var template = [
   {
     label: 'MDPreview',
     submenu: [
-      {label: 'Quit', accelerator: 'CmdOrCtrl+Q', click: function () {app.quit();}}
+      {label: '終了', accelerator: 'CmdOrCtrl+Q', click: function () {app.quit();}}
     ]
   }, {
-    label: 'File',
+    label: 'ファイル',
     submenu: [
-      {label: 'Open', accelerator: 'CmdOrCtrl+O', click: function() {
+      {label: '開く', accelerator: 'CmdOrCtrl+O', click: function() {
         // 「ファイルを開く」ダイアログの呼び出し
         dialog.showOpenDialog(
           {
@@ -74,21 +74,21 @@ var template = [
             }
         });
       }},
-      { label: 'export InDesignXML', click: function() { mainWindow.webContents.send('main-process-message', 'Export XML'); } }
+      { label: 'InDesign用XMLを書き出し', click: function() { mainWindow.webContents.send('main-process-message', 'Export XML'); } }
     ]
   }, {
-    label: 'Edit',
+    label: '編集',
     submenu: [
-      { label: 'copy Print URL', click: function() { mainWindow.webContents.send('main-process-message', 'Print URL'); } }
+      { label: '印刷用URLをコピー', click: function() { mainWindow.webContents.send('main-process-message', 'Print URL'); } }
     ]
   }, {
-    label: 'View',
+    label: 'ビュー',
     submenu: [
-      { label: 'Reload', accelerator: 'CmdOrCtrl+R', click: function() { mainWindow.webContents.reloadIgnoringCache(); } },
-      { label: 'Toggle DevTools', accelerator: 'Alt+CmdOrCtrl+I', click: function() { mainWindow.toggleDevTools(); } },
-      { label: 'Zoom In', accelerator: 'CmdOrCtrl+Plus', click: function(){ mainWindow.webContents.send('main-process-message', 'Zoom In');}},
-      { label: 'Zoom Out', accelerator: 'CmdOrCtrl+-', click: function(){ mainWindow.webContents.send('main-process-message', 'Zoom Out');}},
-      { label: 'VSPreview Reload', accelerator: 'CmdOrCtrl+Shift+R', click: function(){ mainWindow.webContents.send('main-process-message', 'VSPreview Reload');}}
+      { label: '全てのタブをリロード', accelerator: 'CmdOrCtrl+R', click: function() { mainWindow.webContents.reloadIgnoringCache(); } },
+      { label: 'デベロッパーツールの表示／非表示', accelerator: 'Alt+CmdOrCtrl+I', click: function() { mainWindow.toggleDevTools(); } },
+      { label: 'ズームイン', accelerator: 'CmdOrCtrl+Plus', click: function(){ mainWindow.webContents.send('main-process-message', 'Zoom In');}},
+      { label: 'ズームアウト', accelerator: 'CmdOrCtrl+-', click: function(){ mainWindow.webContents.send('main-process-message', 'Zoom Out');}},
+      { label: 'VSPreviewのみリロード', accelerator: 'CmdOrCtrl+Shift+R', click: function(){ mainWindow.webContents.send('main-process-message', 'VSPreview Reload');}}
     ]
   }
 ];

@@ -34,11 +34,18 @@ if(openfile){
         // iframeに読み込む
         var iframe =  document.getElementById('html-preview');
         iframe.src = 'file://' + htmlfilepath;
+        // 簡易ページプレビュー用のiframeに読み込む
+        var exiframe =  document.getElementById('expage-preview');
+        exiframe.src = 'file://' + htmlfilepath;
+        // ページング実行
+        exPaging(exiframe);
 
         // iframeの高さを目一杯にしたい
         // TODO: 本当はタブ幅の分ちゃんと削りたいけどよくわからないので-100px固定
         var dh = window.innerHeight ;
         iframe.style.height = (dh - 50) + 'px';
+        // 簡易ページプレビュー用
+        exiframe.style.height = (dh - 50) + 'px';
                 
         // 監視の準備
         watcher = chokidar.watch(openfile);
@@ -52,9 +59,14 @@ if(openfile){
             if(tabid == '#tab1'){
                 document.getElementById('html-preview').contentDocument
                     .location.reload(true);
-            } else {
+            } else if(tabid == '#tab2'){
                 document.getElementById('vs-preview').contentDocument
                     .location.reload(true);
+            } else {
+                document.getElementById('expage-preview').contentDocument
+                    .location.reload(true);                
+                // ページング実行
+                exPaging(exiframe);
             }
         });        
 
@@ -67,6 +79,7 @@ if(openfile){
                 file.serve(request, response);
             }).resume();
         }).listen(8080);
+        // vsiframeにVivliostyle Viewerを読み込み
         var vsiframe =  document.getElementById('vs-preview');
         vsiframe.src = 'http://localhost:8080/viewer/vivliostyle-viewer.html#x=../' + htmlfilepath.substr(l+1);
         vsiframe.style.height = (dh - 50) + 'px';
@@ -85,6 +98,8 @@ window.onresize = function(){
     iframe.style.height = (dh - 50) + 'px';    
     var vsiframe =  document.getElementById('vs-preview');
     vsiframe.style.height = (dh - 50) + 'px';   
+    var exiframe =  document.getElementById('expage-preview');
+    exiframe.style.height = (dh - 50) + 'px';   
     // TODO: リサイズ時のリロードを止める　できれば警告を表示したい
     // vsiframe.contentDocument.location.reload(true);
 }
