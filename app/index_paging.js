@@ -44,9 +44,6 @@ function exPaging(iframe){
             'align-items': 'flex-start' /*縦に伸ばさない*/
             
         });
-        var bgcolor = cbody.css('backgroundColor');
-        cbody.css('backgroundColor', '#fff');
-        cbody.find('.pagenumber').remove();
 
         // 最初のページのコンテナを生成
         if(cpages.find('.sngpage-container').length < 1){
@@ -55,18 +52,23 @@ function exPaging(iframe){
         // 最後（最初）のページを取得
         var lastpage = cpages.find('.sngpage-container').last();     
 
-        // 子に改ページ要素を含む要素を探して分割する（200mm秒後のタイマー処理になっている点に注意）
+        // CSSの反映を待つためにタイマーで200mm秒後待機
         var timer1 =  setTimeout(function(){
             // 最後のページの全子要素を取得
             var cnts = lastpage.children();
+            // 子に改ページ要素を含む要素を探して分割する
             cnts.each(function(index){
                 divideElement($(this));
             });
             clearTimeout(timer1);
 
+            var bgcolor = cbody.css('backgroundColor');
+            cbody.css('backgroundColor', '#444');
+            cbody.find('.pagenumber').remove();
+
             var counter = 200;    //動作停止用（最大200ページでストップ）
 
-            // 改ページが見つからなくなるまでループ（CSSが反映されるのを待つため200mm秒以上は待機する）
+            // 改ページが見つからなくなるまでループ
             var timer2 = setTimeout(function pagebreakloop(){
                 lastpage.css({
                     'margin-right': '10mm',
@@ -123,6 +125,7 @@ function exPaging(iframe){
                 if(isnopagebreak === true || counter < 0) {
                     // タイマーループ終了
                     clearTimeout(timer2);
+
                     // ノンブル設定
                     console.log('######ノンブル設定');
                     cbody.find('.pagenumber').remove();
@@ -136,6 +139,9 @@ function exPaging(iframe){
                             'font-size': '20px',
                             'color': '#bbb'
                         });
+                    });
+                    cpages.find('.sngpage-container').each(function(index){
+                        $(this).attr('id', 'exipage'+index);
                     });
                     // スクロール位置復帰
                     cpages.scrollLeft(exif_x);
@@ -156,7 +162,7 @@ function exPaging(iframe){
                     timer2 = setTimeout(pagebreakloop, 1);
                 }
 
-            },5); //setTimeout timer2
+            },1); //setTimeout timer2
         }, 200); //setTimeout timer1
 
     }); //cdom.load
