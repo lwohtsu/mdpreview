@@ -18,44 +18,41 @@ function exPaging(iframe){
         // 以降は子要素に対する処理
         var cbody = $(iframe).contents().find('body');
 
+        // body下の全要素をpages-containerで包む
+        if(cbody.find('.pages-container').length < 1){
+            cbody.contents().wrapAll('<div class="pages-container" />');
+        }
+        // body自体の幅は100%に変更
+        // var bodywidth = cbody.css('width');
+        cbody.css('width', '100%');
+
+        // 全ページを入れるコンテナを生成
+        /* 以降は次のような構成になる
+        body
+        ->div.pages-container　（flexbox）
+        ->div.sngpage-container
+        ->div.sngpage-container
+        ->div.sngpage-container
+        */
+        var cpages = cbody.find('.pages-container');
+        cpages.css({
+            'height': '100%',
+            'overflow': 'auto',
+            'display': 'flex',
+            'flex-direction': 'row',     /*横並びにする*/
+            'align-items': 'flex-start' /*縦に伸ばさない*/
+            
+        });
+
+        // 最初のページのコンテナを生成
+        if(cpages.find('.sngpage-container').length < 1){
+            cpages.contents().wrapAll('<div class="sngpage-container" />');
+        }
+        // 最後（最初）のページを取得
+        var lastpage = cpages.find('.sngpage-container').last();     
+
         // CSSの反映を待つためにタイマーで200mm秒後待機
         var timer1 =  setTimeout(function(){
-
-            // body下の全要素をpages-containerで包む
-            if(cbody.find('.pages-container').length < 1){
-                cbody.contents().wrapAll('<div class="pages-container" />');
-            }
-
-            // 全ページを入れるコンテナを生成
-            /* 以降は次のような構成になる
-            body
-            ->div.pages-container　（flexbox）
-            ->div.sngpage-container
-            ->div.sngpage-container
-            ->div.sngpage-container
-            */
-            var cpages = cbody.find('.pages-container');
-            cpages.css({
-                'height': '100%',
-                'overflow': 'auto',
-                'display': 'flex',
-                'flex-direction': 'row',     /*横並びにする*/
-                'align-items': 'flex-start' /*縦に伸ばさない*/
-                
-            });
-
-            // 最初のページのコンテナを生成
-            if(cpages.find('.sngpage-container').length < 1){
-                cpages.contents().wrapAll('<div class="sngpage-container" />');
-            }
-            // 最後（最初）のページを取得
-            var lastpage = cpages.find('.sngpage-container').last();     
-
-            // body自体の幅は100%に変更
-            var bodywidth = cbody.width();
-            console.log(cbody.css('width'));
-            cbody.css('width', '100%');
-
             // 最後のページの全子要素を取得
             var cnts = lastpage.children();
             // 子に改ページ要素を含む要素を探して分割する
@@ -65,7 +62,7 @@ function exPaging(iframe){
             clearTimeout(timer1);
 
             var bgcolor = cbody.css('backgroundColor');
-            cbody.css('backgroundColor', '#bbb');
+            cbody.css('backgroundColor', '#444');
             cbody.find('.pagenumber').remove();
 
             var counter = 200;    //動作停止用（最大200ページでストップ）
@@ -75,11 +72,9 @@ function exPaging(iframe){
             do{
                 lastpage.css({
                     'margin-right': '10mm',
-                    'padding': '40px',
+                    'padding': '4mm',
                     'border': 'solid 1px #aaa',
                     'backgroundColor': bgcolor,
-                    'min-width': (bodywidth + 82) + 'px',
-                    'overflow': 'hidden',
                     'position': 'relative'
                 })
                 if(bgcolor==='rgba(0, 0, 0, 0)'){
