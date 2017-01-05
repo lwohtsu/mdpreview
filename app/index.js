@@ -68,9 +68,7 @@ if(openfile){
             } else {
                 document.getElementById('expage-preview').contentDocument
                     .location.reload(true);                
-                // document.getElementById('expage-preview').src = 'file://' + htmlfilepath 
-                //     + '?' + Math.floor(Math.round()*100000);
-                // ページング実行
+                // ページング実行（loadイベントに紐付けたので2回目は不要）
                 // exPaging(exiframe);
             }
         });        
