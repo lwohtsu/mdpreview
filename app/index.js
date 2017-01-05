@@ -5,6 +5,7 @@
 
 var remote = require('electron').remote;
 var fileUtil = remote.require('./lib/fileUtil');
+var app = remote.app;
 
 // URLからクエリテキストのopenfileを取得
 var matched = location.search.match(/openfile=([^&]*)/);
@@ -36,9 +37,16 @@ if(openfile){
         iframe.src = 'file://' + htmlfilepath;
         // 簡易ページプレビュー用のiframeに読み込む
         var exiframe =  document.getElementById('expage-preview');
+        var apppath = app.getAppPath();
+        exiframe.preload = 'file://' + apppath + '/wv_paging.js';
         exiframe.src = 'file://' + htmlfilepath;
         // ページング実行
-        exPaging(exiframe);
+        // exPaging(exiframe);
+        exiframe.addEventListener('did-finish-load', function(){
+            console.log('did finish load');
+            exiframe.openDevTools();
+            exiframe.executeJavaScript('exPaging(window);');
+        });
 
         // iframeの高さを目一杯にしたい
         // TODO: 本当はタブ幅の分ちゃんと削りたいけどよくわからないので-100px固定
