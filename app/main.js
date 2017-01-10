@@ -9,6 +9,9 @@ var BrowserWindow = require('electron').BrowserWindow;
 var Menu = require('electron').Menu;
 var Shell = require('electron').shell;
 var dialog = require('electron').dialog;
+var fs = require('fs');
+var fileUtil = require('./lib/fileUtil');
+
 
 const {crashReporter} = require('electron');
 crashReporter.start({
@@ -19,6 +22,7 @@ crashReporter.start({
 });
 
 var mainWindow = null;
+var openfile = null;
 
 app.on('window-all-closed', function() {
   if (process.platform != 'darwin')
@@ -71,6 +75,7 @@ var template = [
                   mainWindow = new BrowserWindow({width: 800, height: 600});
               }
               mainWindow.loadURL('file://' + __dirname + '/index.html?openfile=' + encodeURIComponent(filenames[0]));
+              openfile = filenames[0];
             }
         });
       }},
