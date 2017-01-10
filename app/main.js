@@ -74,7 +74,12 @@ var template = [
             }
         });
       }},
-      { label: 'InDesign用XMLを書き出し', click: function() { mainWindow.webContents.send('main-process-message', 'Export XML'); } }
+      { label: '改ページプレビューPDF書き出し', accelerator: 'CmdOrCtrl+P', click: function(){
+        printToPDF1();
+      }},
+      { label: 'InDesign用XMLを書き出し', click: function() { 
+        mainWindow.webContents.send('main-process-message', 'Export XML'); 
+      } }
     ]
   }, {
     label: '編集',
@@ -94,3 +99,38 @@ var template = [
 ];
 
 var menu = Menu.buildFromTemplate(template);
+
+
+function printToPDF1(){
+  if(openfile==null) return false;
+  // markdownからhtmlファイルを作成
+  var htmlfilepath = fileUtil.convertMarkdown(openfile);
+  var previewWindow = new BrowserWindow({width: 640, height: 480});
+  previewWindow.loadURL('file://' + htmlfilepath);
+  // 読み込みが完了したらPDF出力
+  previewWindow.webContents.on('did-finish-load', function(){
+    console.log('start gen pdf');
+    setTimeout(function(){
+      previewWindow.webContents.printToPDF(
+        {
+          marginsType: 0,
+          pageSize: 'A3',
+          printBackground: true,
+          printSelectionOnly: false,
+          landscape: false
+        }, 
+        function(error, data){
+          if(error) throw error;
+          console.log('pdf writing');
+          fs.writeFile('/Users/ohtsu/Documents/進行中/インプレスJS教本/10原稿/lw整理原稿/test.pdf', data, function(error){
+            if (error) throw error;
+            console.log('pdf finish');
+          });
+          setTimeout(function(){
+            previewWindow.close();
+          }, 100);
+      });
+    },1000);
+  });
+
+}
