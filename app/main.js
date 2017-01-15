@@ -11,7 +11,7 @@ var Shell = require('electron').shell;
 var dialog = require('electron').dialog;
 var fs = require('fs');
 var fileUtil = require('./lib/fileUtil');
-
+var path = require('path');
 
 const {crashReporter} = require('electron');
 crashReporter.start({
@@ -82,6 +82,9 @@ var template = [
       { label: '改ページプレビューPDF書き出し', accelerator: 'CmdOrCtrl+P', click: function(){
         printToPDF1();
       }},
+      { label: 'Vivliostyle Viewer PDF書き出し', accelerator: 'CmdOrCtrl+shift+P', click: function(){
+        printToPDF_VS();
+      }},
       { label: 'InDesign用XMLを書き出し', click: function() { 
         mainWindow.webContents.send('main-process-message', 'Export XML'); 
       } }
@@ -105,37 +108,135 @@ var template = [
 
 var menu = Menu.buildFromTemplate(template);
 
-
+// 簡易PDF書き出し（ノンブルが入らない）
 function printToPDF1(){
   if(openfile==null) return false;
-  // markdownからhtmlファイルを作成
-  var htmlfilepath = fileUtil.convertMarkdown(openfile);
-  var previewWindow = new BrowserWindow({width: 640, height: 480});
-  previewWindow.loadURL('file://' + htmlfilepath);
-  // 読み込みが完了したらPDF出力
-  previewWindow.webContents.on('did-finish-load', function(){
-    console.log('start gen pdf');
-    setTimeout(function(){
-      previewWindow.webContents.printToPDF(
-        {
-          marginsType: 0,
-          pageSize: 'A3',
-          printBackground: true,
-          printSelectionOnly: false,
-          landscape: false
-        }, 
-        function(error, data){
-          if(error) throw error;
-          console.log('pdf writing');
-          fs.writeFile('/Users/ohtsu/Documents/進行中/インプレスJS教本/10原稿/lw整理原稿/test.pdf', data, function(error){
-            if (error) throw error;
-            console.log('pdf finish');
+  // 「ファイルを開く」ダイアログの呼び出し
+  dialog.showSaveDialog(
+    {
+      title: '簡易PDF書き出し',
+      defaultpath: openfile,
+      properties: ['openFile'],
+      filters:[{name: 'PDF', extensions: ['pdf']}]
+    },
+    //PDFファイルを書き出す処理
+    function (filename){
+      if(!filename) return;
+      // markdownからhtmlファイルを作成
+      var htmlfilepath = fileUtil.convertMarkdown(openfile);
+      var previewWindow = new BrowserWindow({width: 640, height: 480});
+      previewWindow.loadURL('file://' + htmlfilepath);
+      // 読み込みが完了したらPDF出力
+      previewWindow.webContents.on('did-finish-load', function(){
+        console.log('start gen pdf');
+        setTimeout(function(){
+          previewWindow.webContents.printToPDF(
+            {
+              marginsType: 1,
+              pageSize: 'A4', // CSSの@page指定が優先
+              printBackground: true,
+              printSelectionOnly: false,
+              landscape: false
+            }, 
+            function(error, data){
+              if (error) {
+                dialog.showMessageBox({
+                  title: '簡易PDF書き出し',
+                  message: 'PDF書き出しに失敗しました',
+                  type: 'error'
+                });
+                throw error;
+              }
+              console.log('pdf writing');
+              fs.writeFile(filename, data, function(error){
+                if (error) {
+                  dialog.showMessageBox({
+                    title: '簡易PDF書き出し',
+                    message: 'PDF書き出しに失敗しました',
+                    type: 'error'
+                  });
+                  throw error;
+                }
+                console.log('pdf finish');
+              });
+              // 書き出しが終了したらダイアログを閉じる
+              setTimeout(function(){
+                dialog.showMessageBox({
+                  title: '簡易PDF書き出し',
+                  message: 'PDFを書き出しました',
+                  type: 'info'
+                });
+                previewWindow.close();
+              }, 100);
           });
-          setTimeout(function(){
-            previewWindow.close();
-          }, 100);
+        },1000);
       });
-    },1000);
   });
+}
 
+// Vivliostyle版のPDF書き出し
+function printToPDF_VS(){
+  if(openfile==null) return false;
+  // 「ファイルを開く」ダイアログの呼び出し
+  dialog.showSaveDialog(
+    {
+      title: 'VivliostyleプレビューのPDF書き出し',
+      defaultpath: openfile,
+      properties: ['openFile'],
+      filters:[{name: 'PDF', extensions: ['pdf']}]
+    },
+    //PDFファイルを書き出す処理
+    function (filename){
+      if(!filename) return;
+      // markdownからhtmlファイルを作成
+      var htmlfilepath = fileUtil.convertMarkdown(openfile);
+      var previewWindow = new BrowserWindow({width: 640, height: 480});
+      var l = htmlfilepath.lastIndexOf(path.sep);
+      previewWindow.loadURL('http://localhost:8080/viewer/vivliostyle-viewer.html#x=../' + htmlfilepath.substr(l+1));
+      // 読み込みが完了したらPDF出力
+      previewWindow.webContents.on('did-finish-load', function(){
+        console.log('start gen pdf');
+        setTimeout(function(){
+          previewWindow.webContents.printToPDF(
+            {
+              marginsType: 1,
+              pageSize: 'A4', // CSSの@page指定が優先
+              printBackground: true,
+              printSelectionOnly: false,
+              landscape: false
+            }, 
+            function(error, data){
+              if (error) {
+                dialog.showMessageBox({
+                  title: 'VivliostyleプレビューのPDF書き出し',
+                  message: 'PDF書き出しに失敗しました',
+                  type: 'error'
+                });
+                throw error;
+              }
+              console.log('pdf writing');
+              fs.writeFile(filename, data, function(error){
+                if (error) {
+                  dialog.showMessageBox({
+                    title: 'VivliostyleプレビューのPDF書き出し',
+                    message: 'PDF書き出しに失敗しました',
+                    type: 'error'
+                  });
+                  throw error;
+                }
+                console.log('pdf finish');
+              });
+              // 書き出しが終了したらダイアログを閉じる
+              setTimeout(function(){
+                dialog.showMessageBox({
+                  title: '改ページプレビューのPDF書き出し',
+                  message: 'PDFを書き出しました',
+                  type: 'info'
+                });
+                previewWindow.close();
+              }, 100);
+          });
+        },60000); // setTimeout
+      });
+  });
 }
