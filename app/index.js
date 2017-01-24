@@ -43,7 +43,7 @@ if(openfile){
         // iframeの高さを目一杯にしたい
         // TODO: 本当はタブ幅の分ちゃんと削りたいけどよくわからないので-100px固定
         var dh = window.innerHeight ;
-        var tabh = $('nav-tabs').height();
+        var tabh = $('.nav-tabs').height();
         iframe.style.height = (dh - tabh) + 'px';
         // 簡易ページプレビュー用
         $(exiframe).height(dh- tabh);
